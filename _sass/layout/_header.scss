@@ -1,0 +1,25 @@
+.wrapper {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 15px;
+}
+
+.site-title {
+	color: #fff;
+	font-size: 26px;
+	float: left;
+	line-height: 54px;
+}
+
+.site-nav {
+	border: 1px solid #e8e8e8;
+	border-radius: 5px;
+	height: 36px;
+	width: 36px;
+	text-align: center;
+	line-height: 40px;
+	input {
+		display: none;
+	}
+}

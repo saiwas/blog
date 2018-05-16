@@ -4,14 +4,16 @@
 
   {% include meta-head.html %}
   <body>
-    <div class="site">
-			<header class="masthead">Header</header>
+		<header id="site-header" role="banner">
+			{% include header.html %}
+		</header>
+		<section class="container">
 			<h1 class="page-title">H1 Titile</h1>
 			<main class="main-content">
 				Main Body Content
 			</main>
 			<aside class="categories">Categories</aside>
-			<footer class="footer">Footer Area</footer>
-		</div>
+		</section>
+		<footer id="footer">Footer Area</footer>
   </body>
 </html>

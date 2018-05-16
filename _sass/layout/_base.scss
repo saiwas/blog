@@ -1,0 +1,63 @@
+.site {
+  width: 100%;
+  height: 100vh;
+  border: 2px dotted blue;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "title"
+    "main"
+    "sidebar"
+    "footer"
+  ;
+  @media only screen and (min-width: 765px) {
+      grid-template-columns: 2% 3fr 1fr 2%;
+      grid-template-rows: 50px 150px 1fr 1fr 50px;
+      grid-gap: 20px 30px;
+      grid-template-areas:
+      "header header header header"
+      ". title title ."
+      ". main categories ."
+      ". main . ."
+      "footer footer footer footer"
+    ;
+  }
+}
+
+#site-header {
+  background-color: #1c3340;
+  border-top: 5px solid #424242;
+  min-height: 55px;
+}
+
+#footer {
+  background-color: #1c3340;
+  color: white;
+  padding: 1.5rem;
+}
+
+.container {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.page-title {
+  background-color: antiquewhite;
+  grid-area: title;
+}
+
+.main-content {
+  background-color: rgb(43, 226, 67);
+  grid-area: main;
+}
+
+.categories {
+  background-color: rgb(43, 226, 171);
+  grid-area: categories;
+}
