@@ -6,12 +6,13 @@
 		<header id="site-header" role="banner">
 			{% include header.html %}
 		</header>
-		<section class="container">
-			<h1 class="page-title">H1 Titile</h1>
-			<main class="main-content">
+		<section class="main">
+			<aside id="categories">
+				{% include categories.html %}
+			</aside>
+			<main id="main-content">
 				Main Body Content
 			</main>
-			<aside class="categories">Categories</aside>
 		</section>
 		<footer id="footer">
 				{% include footer.html %}
