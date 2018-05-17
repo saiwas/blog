@@ -1,0 +1,11 @@
+<article>
+  <h2 class="post-title">
+    <a href="{{ post.url }}">{{ post.title }}</a>
+    <p></p>
+    <p class="category">{{ post.categories }}</p>
+    <p class="excerpt">
+      {{ post.excerpt | strip_html | newline_to_br }}
+    </p>
+    <span class="post-date">{{ post.date | date: "%b/%Y/%m/%d" }}</span>
+  </h2>
+</article>
