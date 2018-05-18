@@ -1,0 +1,12 @@
+<article id="post-detail">
+  <header>
+    <h2 class="post-title">
+      <a href="#">{{ page.title }}</a>
+    </h2>
+    <p class="category">{{ page.categories }}</p>
+  </header>
+  <div class="excerpt">
+    {{ page.content }}
+  </div>
+  <span class="post-date">{{ page.date | date: "%d/%b/%Y" }}</span>
+</article>
