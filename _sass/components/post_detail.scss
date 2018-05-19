@@ -8,11 +8,12 @@
 .page-navigation {
     display: flex;
     justify-content: space-between;
-    margin: 1em;
     a {
         color: blueviolet;
         background-color: skyblue;
         border-radius: 15px;
         padding: 10px;
+        margin: 10px;
+        font-size: 12px;
     }
 }

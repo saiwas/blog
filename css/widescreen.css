@@ -29,4 +29,7 @@
     #main-content {
         padding: 0;
     }
+    .page-navigation a {
+        font-size: unset;
+    }
 }
