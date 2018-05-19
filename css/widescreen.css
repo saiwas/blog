@@ -20,7 +20,7 @@
         justify-content: space-around;
     }
     #categories ul li {
-      border: none;
+        border: none;
         width: 15%;
     }
     .category-cnt {
