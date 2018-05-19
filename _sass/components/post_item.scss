@@ -3,8 +3,8 @@ article {
     margin: 0.5em;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    padding: 1em;
-    cursor: pointer;
+    padding: 1.5em;
+    border-style: hidden;
     &:hover,
     &:active {
         border-style: outset;
