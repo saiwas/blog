@@ -17,3 +17,4 @@ This blog will mark down the skills I learned, the articles I read and those are
 1. - [ ] Add an `avatar` component on the top of header.
 1. - [ ] Build up a `pagination` function.
 1. - [ ] Preload/critical-path css for improve page load.
+1. - [ ] Add the SEO tags (_Maybe will finish after post some articles_)
