@@ -11,10 +11,11 @@ a {
     border-top: 5px solid #424242;
 }
 
-#footer {
-    background-color: $base_color;
-    color: white;
-    padding: 1.5rem;
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 #main-content {
@@ -33,13 +34,15 @@ a {
         line-height: 2.5rem;
         border-bottom: 2px solid #DDDDDD;
         padding-left: 2rem;
+        list-style: none;
     }
     a {
         color: #337ab7;
     }
 }
 
-.page-title {
-    background-color: antiquewhite;
-    grid-area: title;
+#footer {
+    background-color: $base_color;
+    color: white;
+    padding: 1.5rem;
 }
