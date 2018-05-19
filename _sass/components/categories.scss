@@ -1,5 +1,21 @@
-.current {
-    background-color: turquoise;
+#categories {
+    p {
+        background-color: floralwhite;
+        color: blueviolet;
+        text-align: center;
+    }
+    ul li {
+        border-radius: 25px;
+        border-style: hidden;
+        border-color: gold;
+        &:hover,
+        &:active {
+            border-style: ridge;
+        }
+        &.active {
+            background-color: gold;
+        }
+    }
 }
 
 .category-cnt {

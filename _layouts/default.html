@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html>
-  {% include meta-head.html %}
+	{% include meta-head.html %}
   <body>
 		<header id="site-header" role="banner">
 			{% include header.html %}
@@ -17,5 +17,23 @@
 		<footer id="footer">
 				{% include footer.html %}
 		</footer>
-  </body>
+	</body>
+	<script>
+		var setBorder = (el, borderStyle) => el.style.borderStyle = borderStyle;
+		var showContent = (el) => {
+			if(el.classList.contains('active'))
+				return;
+			let $activeSection = document.getElementsByClassName(el.dataset.show)[0];
+			setActive(el);
+			setActive($activeSection);
+		}
+		var setActive = (el) => {
+			let $siblingEls = el.parentElement.children
+			for(let i = 0; i< $siblingEls.length; i++){
+				if ($siblingEls[i] === el) continue;
+				$siblingEls[i].classList.remove("active");
+			}
+			el.classList.add("active");
+		}
+	</script>
 </html>
