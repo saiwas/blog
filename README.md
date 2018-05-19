@@ -12,8 +12,8 @@ This blog will mark down the skills I learned, the articles I read and those are
 
 ### TO DO LIST
 **26/05/2018**
-1. Enhance the 404 page.
-1. Add a `category` component to get in the article easily.
-1. Add an `avatar` component on the top of header.
-1. Build up a `pagination` function.
-1. Preload/critical-path css for improve page load.
+1. - [ ] Enhance the 404 page.
+1. - [ ] Add a `category` component to get in the article easily.
+1. - [ ] Add an `avatar` component on the top of header.
+1. - [ ] Build up a `pagination` function.
+1. - [ ] Preload/critical-path css for improve page load.
