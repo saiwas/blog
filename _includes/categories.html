@@ -1,0 +1,11 @@
+<ul>
+  {% assign idx = 0 %} {% for category in site.categories %}
+  <li {% if idx==0 %} class="current" {% endif %} data-show="{{ category | first }}">
+    <a href="javascript:void(0)">
+      {{ category | first }}
+      <span class="category-cnt">{{ category | last | size }}</span>
+    </a>
+  </li>
+  {% assign idx = idx | plus: 1 %} {% endfor %}
+</ul>
+

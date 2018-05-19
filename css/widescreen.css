@@ -1,0 +1,32 @@
+@media (min-width: 800px) {
+    body {
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "header main" "footer main"
+    }
+    .container {
+        grid-area: main;
+        margin: 0;
+        max-width: none;
+        position: relative;
+    }
+    #categories {
+        margin: 0;
+        overflow: scroll;
+    }
+    #categories ul {
+        display: flex;
+        justify-content: space-around;
+    }
+    #categories ul li {
+        border: none;
+        width: 15%;
+    }
+    .category-cnt {
+        margin: 0.5em 1em;
+    }
+    #main-content {
+        padding: 0;
+    }
+}

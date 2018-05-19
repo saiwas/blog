@@ -1,0 +1,24 @@
+.contact {
+  p {
+    font-size: 15px;
+    color: #828282;
+  }
+}
+
+.social-media-list {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 100%;
+  a {
+    color: #fff;
+    font-weight: 600;
+  }
+  li {
+    margin: 5px;
+  }
+}
+
+#legal {
+  margin: 15px 5px;
+}

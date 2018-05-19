@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+  {% include meta-head.html %}
+  <body>
+		<header id="site-header" role="banner">
+			{% include header.html %}
+		</header>
+		<section class="container">
+			<aside id="categories">
+				{% include categories.html %}
+			</aside>
+			<main id="main-content">
+				{% include post_list.html %}
+			</main>
+		</section>
+		<footer id="footer">
+				{% include footer.html %}
+		</footer>
+  </body>
+</html>
