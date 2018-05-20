@@ -1,6 +1,7 @@
 <head>
-  <link rel="stylesheet" href="/css/main.css" >
-  <link rel="stylesheet" href="/css/widescreen.css" media="screen and (min-width: 800px)">
+  <link rel="preload" href="/css/main.css" as="style" type="text/css" onload="this.rel='stylesheet'">
+  <link rel="preload" href="/css/widescreen.css" as="style" type="text/css" onload="this.rel='stylesheet'">
+  <link rel="preload" href="/images/github-avatar.jpg" as="image">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>{% if page.title %}{{ page.title | prepend: 'Saiwas Blog | ' }}{% else %}{{ site.title }}{% endif %}</title>
 </head>
