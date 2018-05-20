@@ -5,6 +5,10 @@
         grid-template-rows: 1fr;
         grid-template-areas: "header main" "footer main"
     }
+    .avatar {
+        width: 150px;
+        height: 150px;
+    }
     .container {
         grid-area: main;
         margin: 0;
