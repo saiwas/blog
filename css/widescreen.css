@@ -20,14 +20,15 @@
         overflow: scroll;
     }
     #categories ul {
-        display: flex;
-        justify-content: space-around;
-        padding: 5px;
+        padding: 5px 2em;
     }
     #categories ul li {
         border: 2px solid gold;
         border-radius: 15px;
-        width: 15%;
+        display: inline-block;
+        margin: 5px;
+        min-width: 15%;
+        height: 2em;
     }
     #categories ul li:hover {
         border-style: ridge;
