@@ -1,17 +1,25 @@
 #categories {
+    background-color: #F6F6F6;
+    box-shadow: 0 0 10px #999;
+    margin-top: 3rem;
+    padding: 0;
+    font-size: 1.5em;
     p {
         background-color: floralwhite;
         color: blueviolet;
         text-align: center;
     }
-    ul li {
-        border-radius: 25px;
-        border-style: hidden;
-        border-color: gold;
-        &:hover,
-        &:active {
-            border-style: ridge;
+    a {
+        color: #337ab7;
+        &:hover {
+            text-decoration: none;
         }
+    }
+    ul li {
+        line-height: 2.5rem;
+        border-top: 1px solid #999;
+        padding-left: 2rem;
+        list-style: none;
         &.active {
             background-color: gold;
         }

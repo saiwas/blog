@@ -18,10 +18,15 @@
     #categories ul {
         display: flex;
         justify-content: space-around;
+        padding: 5px;
     }
     #categories ul li {
-        border: none;
+        border: 2px solid gold;
+        border-radius: 15px;
         width: 15%;
+    }
+    #categories ul li:hover {
+        border-style: ridge;
     }
     .category-cnt {
         margin: 0.5em 1em;
