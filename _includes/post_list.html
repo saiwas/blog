@@ -5,7 +5,7 @@
   {% if idx==0 %}
     {% assign sectionClass = sectionClass | append: ' active' %}
   {% endif %}
-  <section class="post-list {{sectionClass}}">
+  <section class="hide {{sectionClass}}">
     {% for posts in category %}
       {% for post in posts %}
         {% if post.url %}

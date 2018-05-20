@@ -1,5 +1,10 @@
-<p>Categories</p>
-<ul>
+<label class="title">
+  <p>Categories <i class="open-close-icon"></i></p>
+  <input type="checkbox" class="hide" onchange="toggleCategoryTab(this)">
+</label>
+<ul id="category-list" class="hide"
+  ontouchstart="setBorder(this, 'outset')"
+  ontouchend="setBorder(this, 'hidden');">
   {% assign idx = 0 %} {% for category in site.categories %}
   <li {% if idx==0 %} class="active" {% endif %} data-show="{{ category | first }}"
     ontouchstart="setBorder(this, 'inset')"

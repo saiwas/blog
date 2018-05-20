@@ -35,5 +35,18 @@
 			}
 			el.classList.add("active");
 		}
+
+		var toggleCategoryTab = (el) => {
+			let categoryEl = document.getElementById('category-list');
+			let iconEl = document.getElementsByClassName('open-close-icon')[0];
+			if(el.checked) {
+				categoryEl.classList.remove('hide');
+				iconEl.classList.add('open');
+			}
+			else {
+				categoryEl.classList.add('hide');
+				iconEl.classList.remove('open');
+			}
+		}
 	</script>
 </html>
