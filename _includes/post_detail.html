@@ -3,7 +3,7 @@
     <h2 class="post-title">
       <a href="#">{{ page.title }}</a>
     </h2>
-    <p class="category">{{ page.categories }}</p>
+    <p class="category">{{ page.categories | join: ' | ' }}</p>
   </header>
   <div class="excerpt">
     {{ page.content }}
