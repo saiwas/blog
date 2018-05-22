@@ -1,6 +1,7 @@
 ---
 layout: default
 permalink: /test/
+title: test
 pagination:
   enabled: true
   category: test

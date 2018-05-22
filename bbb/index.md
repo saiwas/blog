@@ -1,10 +1,10 @@
 ---
 layout: default
-title: aaa
-permalink: /aaa/
+title: bbb
+permalink: /bbb/
 pagination:
   enabled: true
-  category: aaa
+  category: bbb
   permalink: /:num/
   sort_field: 'title'
   sort_reverse: false

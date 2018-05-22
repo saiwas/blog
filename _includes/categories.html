@@ -5,16 +5,21 @@
 <ul id="category-list" class="hide"
   ontouchstart="setBorder(this, 'outset')"
   ontouchend="setBorder(this, 'hidden');">
-  {% assign idx = 0 %} {% for category in site.categories %}
-  <li {% if idx==0 %} class="active" {% endif %} data-show="{{ category | first }}"
-    ontouchstart="setBorder(this, 'inset')"
-    ontouchend="setBorder(this, 'none');this.style.borderTop='1px solid #999'"
-    onclick="showContent(this)">
-    <a href="javascript:void(0)">
-      {{ category | first }}
-      <span class="category-cnt">{{ category | last | size }}</span>
-    </a>
-  </li>
-  {% assign idx = idx | plus: 1 %} {% endfor %}
+  {% assign idx = 0 %}
+  {% assign currentCategory = page.url | split: '/' %}
+  {% assign currentCategory = currentCategory[1] | downcase %}
+  {% for category in site.categories %}
+    {% assign categoryName = category | first | downcase %}
+    <a href="/{{categoryName}}">
+      <li {% if currentCategory == categoryName %} class='active' {% endif %}
+        data-show="{{ categoryName }}"
+        ontouchstart="setBorder(this, 'inset')"
+        ontouchend="setBorder(this, 'none');this.style.borderTop='1px solid #999'">
+          {{ categoryName }}
+          <span class="category-cnt">{{ category | last | size }}</span>
+      </li>
+      </a>
+    {% assign idx = idx | plus: 1 %}
+  {% endfor %}
 </ul>
 

@@ -25,6 +25,6 @@ exclude:
 # Pagination Settings
 pagination:
   enabled: true
-  per_page: 3
+  per_page: 4
   permalink: '/page:num/'
   limit: 0
