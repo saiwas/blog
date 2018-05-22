@@ -1,18 +1,9 @@
-{% assign idx = 0 %}
-{% for category in site.categories %}
-  {% assign categoryClassName = category | first %}
-  {% assign sectionClass = categoryClassName %}
-  {% if idx==0 %}
-    {% assign sectionClass = sectionClass | append: ' active' %}
-  {% endif %}
-  <section class="hide {{sectionClass}}">
-    {% for posts in category %}
-      {% for post in posts %}
-        {% if post.url %}
-          {% include post_item.html %}
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-  </section>
-  {% assign idx = idx | plus: 1 %}
-{% endfor %}
+<section class="{{sectionClass}}">
+  {% for post in paginator.posts %}
+    {% if post.url %}
+      {% include post_item.html %}
+    {% endif %}
+  {% endfor %}
+</section>
+
+{% include pagination.html %}
