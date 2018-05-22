@@ -16,9 +16,6 @@ markdown: kramdown
 # Setting paginates
 plugins:
   - jekyll-paginate-v2
-exclude:
-  - Gemfile
-  - Gemfile.lock
 
 #permalink: pretty
 
