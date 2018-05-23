@@ -21,8 +21,8 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 # push
 cd _site
-git config user.email $USER_EMAIL
-git config user.name $USER_NAME
+git config user.email "saiwas@qq.com"
+git config user.name "saiwas"
 git add --all
 git commit -a -m "Travis #$TRAVIS_BUILD_NUMBER"
 git push --force origin gh-pages
