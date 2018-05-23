@@ -17,7 +17,7 @@ mkdir _site
 git clone https://github.com/saiwas/blog.git --branch gh-pages _site
 
 # build with Jekyll into "_site"
-bundle exec JEKYLL_ENV=production jekyll build
+JEKYLL_ENV=production bundle exec jekyll build
 
 # push
 cd _site
