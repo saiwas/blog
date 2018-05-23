@@ -2,7 +2,7 @@ title: Saiwas Blog
 email: johnnysaiwas@gmail.com
 description: >-
   A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.
-baseurl: ""
+baseurl: "/blog"
 url: ""
 github_username:  saiwas
 permalink: /:categories/:title:output_ext
