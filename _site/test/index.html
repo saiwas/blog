@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+  <link rel="preload" href="/css/main.css" as="style" type="text/css" onload="this.rel='stylesheet'" crossorigin="anonymous">
+  <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <noscript>
+    <link rel="stylesheet" href="/css/main.css">
+  </noscript>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Saiwas Blog | test</title>
+  <style>
+    .avatar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      border-radius: 10%;
+    }
+
+    #site-header {
+      background-color: black;
+      border-top: 5px solid #424242;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #main-content {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5em 0;
+      margin: 0 auto;
+      max-width: 1250px;
+    }
+
+    #footer {
+      background-color: black;
+      color: white;
+      padding: 1.5rem;
+    }
+
+    @media (min-width: 800px) {
+      body {
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "header main" "footer main"
+      }
+      .avatar {
+        width: 150px;
+        height: 150px;
+      }
+      .container {
+        grid-area: main;
+        margin: 0;
+        max-width: none;
+        position: relative;
+      }
+      #categories {
+        margin: 0;
+        overflow: scroll;
+      }
+      #categories ul {
+        padding: 5px 2em;
+      }
+      #categories ul li {
+        border: 2px solid gold;
+        border-radius: 15px;
+        display: inline-block;
+        margin: 5px;
+        min-width: 15%;
+        height: 2em;
+      }
+      #categories ul li:hover {
+        border-style: ridge;
+      }
+      .category-cnt {
+        margin: 0.5em 1em;
+      }
+      #main-content {
+        padding: 0;
+      }
+      .page-navigation a {
+        font-size: unset;
+      }
+    }
+  </style>
+</head>
+
+  <body>
+		<header id="site-header" role="banner">
+			<div class="wrapper">
+  <img class="avatar" data-src="/images/github-avatar.jpg" alt="saiwas-avatar">
+  <h1 class="site-title">
+    <a rel="author" href="/">Saiwas</a>
+  </h1>
+  <p>I am a web developer.</p>
+  <p>Always hungry to keep learning.</p>
+</div>
+
+		</header>
+		<section class="container">
+			<aside id="categories">
+				<label class="title">
+  <p>Categories <i class="open-close-icon"></i></p>
+  <input type="checkbox" class="hide" onchange="toggleCategoryTab(this)">
+</label>
+<ul id="category-list" class="hide"
+  ontouchstart="setBorder(this, 'outset')"
+  ontouchend="setBorder(this, 'hidden');">
+  
+  
+  
+  
+    
+    <a href="/test">
+      <li  class='active' 
+        data-show="test"
+        ontouchstart="setBorder(this, 'inset')"
+        ontouchend="setBorder(this, 'none');this.style.borderTop='1px solid #999'">
+          test
+          <span class="category-cnt">5</span>
+      </li>
+      </a>
+    
+  
+    
+    <a href="/bbb">
+      <li 
+        data-show="bbb"
+        ontouchstart="setBorder(this, 'inset')"
+        ontouchend="setBorder(this, 'none');this.style.borderTop='1px solid #999'">
+          bbb
+          <span class="category-cnt">1</span>
+      </li>
+      </a>
+    
+  
+    
+    <a href="/aaa">
+      <li 
+        data-show="aaa"
+        ontouchstart="setBorder(this, 'inset')"
+        ontouchend="setBorder(this, 'none');this.style.borderTop='1px solid #999'">
+          aaa
+          <span class="category-cnt">3</span>
+      </li>
+      </a>
+    
+  
+</ul>
+
+
+			</aside>
+			<main id="main-content">
+				<section class="">
+  
+    
+      <article
+  ontouchstart="setBorder(this, 'outset')"
+  ontouchend="setBorder(this, 'hidden');">
+  <h2 class="post-title">
+    <a href="/test/aaa/how-i-rest-from-work.html">How I Rest From Work</a>
+  </h2>
+  <p class="category">testAAA</p>
+  <p class="excerpt">
+    Fam locavore snackwave bushwick +1 sartorial. Selfies portland knausgaard synth. Pop-up art party marfa deep v pitchfork subway tile 3 wolf moon. Ennui pinterest tumblr yr, adaptogen succulents copper mug twee. Blog paleo kickstarter roof party blue bottle tattooed polaroid jean shorts man bun lo...
+  </p>
+  <span class="post-date">12/Sep/2017</span>
+  <a class="more" href="/test/aaa/how-i-rest-from-work.html">Read More</a>
+</article>
+
+    
+  
+    
+      <article
+  ontouchstart="setBorder(this, 'outset')"
+  ontouchend="setBorder(this, 'hidden');">
+  <h2 class="post-title">
+    <a href="/test/how-to-start-programming.html">How To Start Programming</a>
+  </h2>
+  <p class="category">test</p>
+  <p class="excerpt">
+    Post-ironic jean shorts bushwick umami, synth beard austin hell of meh kitsch distillery sustainable plaid bitters. Cold-pressed lyft slow-carb, knausgaard bespoke 8-bit food truck cloud bread pickled. Taiyaki bitters trust fund heirloom craft beer single-origin coffee. Readymade fam vape blue bo...
+  </p>
+  <span class="post-date">12/Sep/2017</span>
+  <a class="more" href="/test/how-to-start-programming.html">Read More</a>
+</article>
+
+    
+  
+    
+      <article
+  ontouchstart="setBorder(this, 'outset')"
+  ontouchend="setBorder(this, 'hidden');">
+  <h2 class="post-title">
+    <a href="/test/the-best-organizer-software.html">The Best Organizer Software</a>
+  </h2>
+  <p class="category">test</p>
+  <p class="excerpt">
+    Church-key blog messenger bag, selfies umami man braid mlkshk. Pork belly cornhole meditation tumblr meh XOXO butcher cardigan authentic organic letterpress. Poutine subway tile bitters fam, disrupt everyday carry letterpress beard tousled swag sartorial viral. Retro af 3 wolf moon heirloom, pork...
+  </p>
+  <span class="post-date">12/Sep/2017</span>
+  <a class="more" href="/test/the-best-organizer-software.html">Read More</a>
+</article>
+
+    
+  
+    
+      <article
+  ontouchstart="setBorder(this, 'outset')"
+  ontouchend="setBorder(this, 'hidden');">
+  <h2 class="post-title">
+    <a href="/test/bbb/welcome-to-jekyll.html">Welcome to Jekyll!</a>
+  </h2>
+  <p class="category">testbbb</p>
+  <p class="excerpt">
+    You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.
+
+
+  </p>
+  <span class="post-date">06/Apr/2017</span>
+  <a class="more" href="/test/bbb/welcome-to-jekyll.html">Read More</a>
+</article>
+
+    
+  
+</section>
+
+<!-- pagination -->
+
+<div class="pagination">
+  
+    <span>&laquo; Prev</span>
+  
+  
+    
+      <span class="webjeda">1</span>
+    
+  
+    
+      <a href="/page2">2</a>
+    
+  
+  
+    <a href="/test/page2/">Next &raquo;</a>
+  
+</div>
+
+
+
+			</main>
+		</section>
+		<footer id="footer">
+				<div class="contact wrapper">
+  <h3>CONTACT</h3>
+  <ul class="social-media-list">
+    <li class="fab fa-github">
+      <a href="https://github.com/saiwas">
+        saiwas
+      </a>
+    </li>
+    <li class="fa fa-envelope">
+      <a href="mailto:johnnysaiwas@gmail.com">
+        johnnysaiwas@gmail.com
+      </a>
+    </li>
+    <li class="fab fa-qq">
+      <a href="/">
+        464781456
+      </a>
+    </li>
+  </ul>
+  <p>A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take
+    away.</p>
+  <p id="legal">
+    Copyright (c) 2018 Saiwas | Powered by
+    <a href="http://jekyllrb.com">Jekyll</a> &amp;
+    <a href="http://github.com">GitHub</a> | designed &amp; build by
+    <a href="http://saiwas.github.io">saiwas</a>
+  </p>
+</div>
+		</footer>
+	</body>
+	<script type="text/javascript" src="/js/application.js" async defer></script>
+</html>
