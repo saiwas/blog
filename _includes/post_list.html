@@ -1,9 +1,0 @@
-<section class="{{sectionClass}}">
-  {% for post in paginator.posts %}
-    {% if post.url %}
-      {% include post_item.html %}
-    {% endif %}
-  {% endfor %}
-</section>
-
-{% include pagination.html %}
