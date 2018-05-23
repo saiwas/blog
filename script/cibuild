@@ -21,8 +21,7 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 # push
 cd _site
-git config user.email "saiwas@qq.com"
-git config user.name "saiwas"
+DATE=`date '+%Y-%m-%d'`
 git add --all
-git commit -a -m "Travis #$TRAVIS_BUILD_NUMBER"
+git commit -a -m "Publish Content On ${DATE}"
 git push --force origin gh-pages
