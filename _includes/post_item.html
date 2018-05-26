@@ -2,12 +2,12 @@
   ontouchstart="setBorder(this, 'outset')"
   ontouchend="setBorder(this, 'hidden');">
   <h2 class="post-title">
-    <a href="/blog{{ post.url }}">{{ post.title }}</a>
+    <a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a>
   </h2>
   <p class="category">{{ post.categories }}</p>
   <p class="excerpt">
     {{ post.excerpt | strip_html | truncate: 300 }}
   </p>
   <span class="post-date">{{ post.date | date: "%d/%b/%Y" }}</span>
-  <a class="more" href="/blog{{ post.url }}">Read More</a>
+  <a class="more" href="{{site.baseurl}}{{ post.url }}">Read More</a>
 </article>
