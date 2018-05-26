@@ -29,3 +29,24 @@ var toggleCategoryTab = (el) => {
     iconEl.classList.remove('open');
   }
 }
+
+window.addEventListener('load', async e => {
+  if('serviceWorker' in navigator) {
+    try {
+      navigator.serviceWorker
+      .register('/blog/js/sw.js')
+      .then(() => {
+        console.log(`SW registered`);
+      })
+      .then(() => fetchData());
+    } catch (error) {
+      console.log(`SW register fail`);
+    }
+  }
+
+})
+
+var fetchData = async () => {
+  console.info(window.location.href);
+  await fetch(`${window.location.href}`);
+}
