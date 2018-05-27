@@ -8,14 +8,11 @@ const staticAsscess = [
 ];
 
 self.addEventListener('install', async e => {
-  console.info("Install");
   let cache = await caches.open('saiwas-blog');
   cache.addAll(staticAsscess);
 });
 
 self.addEventListener('fetch', async e => {
-  console.info('fetch');
-
   let req = e.request;
   let url = new URL(req.url);
 
