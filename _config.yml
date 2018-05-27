@@ -29,5 +29,5 @@ pagination:
 # Config server response header
 webrick:
   headers:
-    Link: </css/main.css>; rel=preload; as=style, </images/github-avatar.jpg>; rel=preload; as=image
+    Link: </blog/css/main.css>; rel=preload; as=style, </blog/images/github-avatar.jpg>; rel=preload; as=image
     Cache-Control: public, max-age=31536000
