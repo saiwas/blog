@@ -35,8 +35,8 @@ window.addEventListener('load', async e => {
     try {
       navigator.serviceWorker
         .register('/blog/sw.js')
-      .then(() => {
-        console.log(`SW registered`);
+        .then((registration) => {
+          console.log(`SW registered! scope: ${registration.scope}`);
       });
     } catch (error) {
       console.log(`SW register fail`);
