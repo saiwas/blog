@@ -2,6 +2,8 @@
   "name": "Saiwas Blog",
   "short_name": "saiwas blog",
   "theme_color": "#2196f3",
+  "lang": "en-US",
+  "scope": "/blog/",
   "background_color": "#21baf3",
   "display": "standalone",
   "description": "This is saiwas blog",
