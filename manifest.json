@@ -1,11 +1,11 @@
 {
-  "name": "Saiwas Bloh",
+  "name": "Saiwas Blog",
   "short_name": "saiwas blog",
   "theme_color": "#2196f3",
   "background_color": "#21baf3",
   "display": "standalone",
   "description": "This is saiwas blog",
-  "start_url": "../",
+  "start_url": ".",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
