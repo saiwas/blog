@@ -1,7 +1,5 @@
 const staticAsscess = [
   './',
-  './aaa/',
-  './bbb/',
   './css/main.css',
   './fonts/fa-brands-400.woff2',
   './fonts/fa-solid-900.woff2',
