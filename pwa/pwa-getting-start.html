@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="manifest" href="/blog/manifest.json">
+  <link rel="preload" href="/blog/css/main.css" as="style" type="text/css" onload="this.rel='stylesheet'" crossorigin="anonymous">
+  <link rel="preload" href="/blog/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/blog/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <meta name="theme-color" content="#2196f3">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#2196f3">
+  <meta name="apple-mobile-web-app-title" content="Saiwas Blog">
+  <link rel="apple-touch-icon" href="/blog/images/icons/icon-152x152.png">
+  <!-- Add to home screen for windows -->
+  <meta name="msapplication-TileImage" content="/blog/images/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#2196f3">
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/main.css">
+  </noscript>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=1">
+  <title>Saiwas Blog | Progressive Web App - Getting Start</title>
+  <style>
+    .avatar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      border-radius: 10%;
+    }
+
+    #site-header {
+      background-color: black;
+      border-top: 5px solid #424242;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #main-content {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5em 0;
+      margin: 0 auto;
+      max-width: 1250px;
+    }
+
+    #footer {
+      background-color: black;
+      color: white;
+      padding: 1.5rem;
+    }
+
+    @media (min-width: 800px) {
+      body {
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "header main" "footer main"
+      }
+      .avatar {
+        width: 150px;
+        height: 150px;
+      }
+      .container {
+        grid-area: main;
+        margin: 0;
+        max-width: none;
+        position: relative;
+      }
+      #categories {
+        margin: 0;
+        overflow: scroll;
+      }
+      #categories ul {
+        padding: 5px 2em;
+      }
+      #categories ul li {
+        border: 2px solid gold;
+        border-radius: 15px;
+        display: inline-block;
+        margin: 5px;
+        min-width: 15%;
+        height: 2em;
+      }
+      #categories ul li:hover {
+        border-style: ridge;
+      }
+      .category-cnt {
+        margin: 0.5em 1em;
+      }
+      #main-content {
+        padding: 0;
+      }
+      .page-navigation a {
+        font-size: unset;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+  <header id="site-header" role="banner">
+    <div class="wrapper">
+  <img class="avatar" data-src="https://avatars2.githubusercontent.com/u/3829027?s=460&v=4" alt="saiwas-avatar">
+  <h1 class="site-title">
+    <a rel="author" href="/blog/">Saiwas</a>
+  </h1>
+  <p>I am a web developer.</p>
+  <p>Always hungry to keep learning.</p>
+</div>
+
+  </header>
+  <section class= "container">
+    <article id="post-detail">
+  <header>
+    <h2 class="post-title">
+      <a href="#">Progressive Web App - Getting Start</a>
+    </h2>
+    <p class="category">pwa</p>
+  </header>
+  <div class="excerpt">
+    <h2 id="前言">前言</h2>
+<p>在移动大时代的前期, Mobile Web一直受到了 <code class="highlighter-rouge">用户体验枷锁</code> 和 <code class="highlighter-rouge">用户留存枷锁</code> 两大枷锁的限制. 这促使互联网公司更愿意投入人力在 Native App 的开发上, 而忽略 Web.因此, Native App 顺势迅速成长起来, 大量的需求出现了, 也吸引了各类培训机构开启相关NA开发的课程, 吸引了很多人转做NA开发, 各种Native App的技术, 教程, 实践等, 也如雨后春笋般布满了各大技术论坛.</p>
+
+<p>对于Native App 来说, 其最大的问题是 <strong>本身封闭, 内容无法被索引</strong></p>
+
+<p>但是 <strong>相对于Native App的封闭, PWA 却是完全开放的</strong></p>
+
+<p>按照当前的发展趋势, PWA 将会带来 Web App 的大量需求</p>
+
+<hr />
+
+<h2 id="什么是pwa">什么是PWA?</h2>
+
+<ul>
+  <li>
+    <p>PWA（Progressive Web App）是 <em>全新的网页技术</em>, 让网站的离线体验变得更好,网络连接断断续续时体验也会更好, 它会模拟一些原生功能, 比如通知推送. 在移动端利用标准化框架, 让网页应用呈现和原生应用相似的体验.</p>
+  </li>
+  <li>
+    <p>Twitter和Flipboard都推出了PWA, 你可以将它放在Android主屏. 微软将PWA带到了Windows 10.</p>
+  </li>
+  <li>
+    <p>PWA不能包含原生OS相关代码.</p>
+  </li>
+  <li>
+    <p>PWA仍然是网站, 只是在缓存, 通知, 后台功能等方面表现更好.</p>
+  </li>
+</ul>
+
+<hr />
+<h2 id="pwa-的特点">PWA 的特点</h2>
+<ul>
+  <li><strong>Progressive</strong> - 适用于所有用户, 无论浏览器的选择是什么.</li>
+  <li><strong>Responsive</strong> - 适用于任何形式的设备：桌面, 手机, 平板或其他.</li>
+  <li><strong>Connectivity independent</strong> - 与 <code class="highlighter-rouge">Service Worker</code> 进行离线或低质量网络工作.</li>
+  <li><strong>App-like</strong> - 感觉就像一个应用程序.</li>
+  <li><strong>Fresh</strong> - 通过 <code class="highlighter-rouge">Service Worker</code> 保持最新的消息.</li>
+  <li><strong>Safe</strong> - 通过HTTPS提供防止窥探并确保内容未被篡改.</li>
+  <li><strong>Discoverable</strong> - PWA使用 <code class="highlighter-rouge">manifest.json</code> 和 <code class="highlighter-rouge">Service Worker scope</code>可让客户端被识别为“应用程序” , 但是由于本身是web page,所以是可以被搜索引擎索引的.</li>
+  <li><strong>Installable</strong> - 允许用户添加他们到主屏幕的应用程序, 而省去用应用程序商店的麻烦.</li>
+  <li><strong>Linkable</strong> - 通过URL轻松共享应用程序, 不需要复杂的安装.</li>
+</ul>
+
+<hr />
+<h2 id="pwa-需要的技术">PWA 需要的技术</h2>
+<ul>
+  <li>响应式设计</li>
+  <li>Web App Manifest (Web应用程序清单)</li>
+  <li>Service Worker</li>
+  <li>Cache API</li>
+  <li>Push &amp; Notification</li>
+</ul>
+
+<hr />
+<h2 id="实行pwa的步骤">实行PWA的步骤</h2>
+
+<blockquote>
+  <p>PWA 涉及到从安全, 性能和体验等方面的优化, 想要一次性支持所有特性, 代价很高, 老板也不一定愿意投入大量人力来支持这项大工程.
+所以, 相对的, 我们也可以用渐进式的方法, 一步步地把现有的项目转成PWA:</p>
+</blockquote>
+
+<ol>
+  <li>将全站 <code class="highlighter-rouge">HTTPS</code> 化. <code class="highlighter-rouge">HTTPS</code> 不但能提高全站的安全性, 而且 <code class="highlighter-rouge">HTTPS</code> 还是 PWA 的基础.</li>
+  <li>添加 <code class="highlighter-rouge">Service Worker</code>. <code class="highlighter-rouge">SW</code> 不只是 <em>PWA</em> 的专项, <code class="highlighter-rouge">SW</code> 可以提供离线功能, 能有效提高 <strong>首屏时间</strong>, 性能优化上是一个不错的选择.</li>
+  <li>添加 <code class="highlighter-rouge">manifest.json</code>. 在完成网站优化以后, 我们就可以构建程序清单 <code class="highlighter-rouge">manifest.json</code> 告诉用户我们的网站是可以运行安装. 当然, 这步可以和第二步同时进行.</li>
+  <li>增加消息推送功能.</li>
+  <li>添加其他业务特性 …….</li>
+</ol>
+
+<hr />
+<h2 id="总结">总结</h2>
+<p>PWA作为2018最火热的技术概念之一, 对提升Web应用的安全, 性能和体验有着很大的意义, 非常值得我们去了解与学习.</p>
+
+  </div>
+  <span class="post-date">28/May/2018</span>
+</article>
+
+<div class="page-navigation">
+  
+  <a class="prev" href="/blog/test/welcome-to-jekyll.html">&laquo; Welcome to Jekyll!</a>
+   
+</div>
+
+  </section>
+  <footer id="footer">
+    <div class="contact wrapper">
+  <h3>CONTACT</h3>
+  <ul class="social-media-list">
+    <li class="fab fa-github">
+      <a href="https://github.com/saiwas">
+        saiwas
+      </a>
+    </li>
+    <li class="fa fa-envelope">
+      <a href="mailto:johnnysaiwas@gmail.com">
+        johnnysaiwas@gmail.com
+      </a>
+    </li>
+    <li class="fab fa-qq">
+      <a href="/">
+        464781456
+      </a>
+    </li>
+  </ul>
+  <p>A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take
+    away.</p>
+  <p id="legal">
+    Copyright (c) 2018 Saiwas | Powered by
+    <a href="http://jekyllrb.com">Jekyll</a> &amp;
+    <a href="http://github.com">GitHub</a> | designed &amp; build by
+    <a href="http://saiwas.github.io">saiwas</a>
+  </p>
+</div>
+  </footer>
+</body>
+<script type="text/javascript" src="/blog/js/application.js" async defer></script>
+</html>
