@@ -25,6 +25,7 @@ pagination:
   per_page: 4
   permalink: '/page:num/'
   limit: 0
+  sort_reverse: true
 
 # Config server response header
 webrick:
