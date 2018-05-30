@@ -1,10 +1,10 @@
 ---
 layout: default
-title: aaa
-permalink: /aaa/
+title: pwa
+permalink: /pwa/
 pagination:
   enabled: true
-  category: aaa
+  category: pwa
   permalink: /:num/
   sort_field: 'title'
   sort_reverse: false

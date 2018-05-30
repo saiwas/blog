@@ -10,7 +10,7 @@
   {% assign currentCategory = currentCategory[1] | downcase %}
   {% for category in site.categories %}
     {% assign categoryName = category | first | downcase %}
-    <a href="/blog/{{categoryName}}">
+    <a href="{{site.baseurl}}/{{categoryName}}">
       <li {% if currentCategory == categoryName %} class='active' {% endif %}
         data-show="{{ categoryName }}"
         ontouchstart="setBorder(this, 'inset')"

@@ -29,3 +29,18 @@ var toggleCategoryTab = (el) => {
     iconEl.classList.remove('open');
   }
 }
+
+window.addEventListener('load', async e => {
+  if('serviceWorker' in navigator) {
+    try {
+      navigator.serviceWorker
+        .register('/blog/sw.js')
+        .then((registration) => {
+          console.log(`SW registered! scope: ${registration.scope}`);
+      });
+    } catch (error) {
+      console.log(`SW register fail`);
+    }
+  }
+
+})

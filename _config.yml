@@ -2,7 +2,7 @@ title: Saiwas Blog
 email: johnnysaiwas@gmail.com
 description: >-
   A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.
-baseurl: ""
+baseurl: "/blog"
 url: ""
 github_username:  saiwas
 permalink: /:categories/:title:output_ext
@@ -25,9 +25,10 @@ pagination:
   per_page: 4
   permalink: '/page:num/'
   limit: 0
+  sort_reverse: true
 
 # Config server response header
 webrick:
   headers:
-    Link: </css/main.css>; rel=preload; as=style, </images/github-avatar.jpg>; rel=preload; as=image
+    Link: </blog/css/main.css>; rel=preload; as=style, </blog/images/github-avatar.jpg>; rel=preload; as=image
     Cache-Control: public, max-age=31536000
