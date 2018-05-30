@@ -42,5 +42,4 @@ window.addEventListener('load', async e => {
       console.log(`SW register fail`);
     }
   }
-
 })
