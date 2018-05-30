@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="manifest" href="/blog/manifest.json">
+  <link rel="preload" href="/blog/css/main.css" as="style" type="text/css" onload="this.rel='stylesheet'" crossorigin="anonymous">
+  <link rel="preload" href="/blog/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/blog/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <meta name="theme-color" content="#2196f3">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#2196f3">
+  <meta name="apple-mobile-web-app-title" content="Saiwas Blog">
+  <link rel="apple-touch-icon" href="/blog/images/icons/icon-152x152.png">
+  <!-- Add to home screen for windows -->
+  <meta name="msapplication-TileImage" content="/blog/images/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#2196f3">
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/main.css">
+  </noscript>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=1">
+  <title>Saiwas Blog | Progressive Web App - Service Worker</title>
+  <style>
+    .avatar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      border-radius: 10%;
+    }
+
+    #site-header {
+      background-color: black;
+      border-top: 5px solid #424242;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #main-content {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5em 0;
+      margin: 0 auto;
+      max-width: 1250px;
+    }
+
+    #footer {
+      background-color: black;
+      color: white;
+      padding: 1.5rem;
+    }
+
+    @media (min-width: 800px) {
+      body {
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "header main" "footer main"
+      }
+      .avatar {
+        width: 150px;
+        height: 150px;
+      }
+      .container {
+        grid-area: main;
+        margin: 0;
+        max-width: none;
+        position: relative;
+      }
+      #categories {
+        margin: 0;
+        overflow: scroll;
+      }
+      #categories ul {
+        padding: 5px 2em;
+      }
+      #categories ul li {
+        border: 2px solid gold;
+        border-radius: 15px;
+        display: inline-block;
+        margin: 5px;
+        min-width: 15%;
+        height: 2em;
+      }
+      #categories ul li:hover {
+        border-style: ridge;
+      }
+      .category-cnt {
+        margin: 0.5em 1em;
+      }
+      #main-content {
+        padding: 0;
+      }
+      .page-navigation a {
+        font-size: unset;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+  <header id="site-header" role="banner">
+    <div class="wrapper">
+  <img class="avatar" data-src="https://avatars2.githubusercontent.com/u/3829027?s=460&v=4" alt="saiwas-avatar">
+  <h1 class="site-title">
+    <a rel="author" href="/blog/">Saiwas</a>
+  </h1>
+  <p>I am a web developer.</p>
+  <p>Always hungry to keep learning.</p>
+</div>
+
+  </header>
+  <section class= "container">
+    <article id="post-detail">
+  <header>
+    <h2 class="post-title">
+      <a href="#">Progressive Web App - Service Worker</a>
+    </h2>
+    <p class="category">pwa</p>
+  </header>
+  <div class="excerpt">
+    <h2 id="背景">背景</h2>
+<p>随着Web 的快速发展, 用户对浏览网站的要求也逐步提高, 而如今移动设备的不断普及, 同时 <code class="highlighter-rouge">Native App</code> 在用户体验上对 Web领域的冲击, 更多的用户都希望在预览网页时能够想打开app一样的方便, 响应一样的迅速. 于是前端的攻城狮为了优化几十毫秒而费尽心思.</p>
+
+<p>终于, W3C组织早在 2014年 5月 在 <strong>持久的离线缓存</strong> 这个方面提出了 <code class="highlighter-rouge">Service Worker</code> 这一个 H5 API.</p>
+
+<hr />
+
+<h2 id="什么是-service-worker-sw">什么是 <code class="highlighter-rouge">Service Worker</code> (SW)</h2>
+<blockquote>
+  <p><code class="highlighter-rouge">SW</code> 是浏览器在后台运行的脚本，在注册并安装成功后, 运行于浏览器后台, 与网页分开, 不受页面刷新的影响, 但是它还可以监听和截拦作用域范围内所有页面的 <code class="highlighter-rouge">HTTP</code> 请求.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="sw-作用">SW 作用</h2>
+<ol>
+  <li>网络代理，转发请求，伪造响应</li>
+  <li>离线缓存</li>
+  <li>消息推送</li>
+  <li>后台消息传递</li>
+</ol>
+
+<p><img src="http://ravindranaik.com/wp-content/uploads/2018/02/1fbdd59d923c44cb.png" alt="Service Worker" /></p>
+
+<hr />
+
+<h2 id="sw-生命周期">SW 生命周期</h2>
+
+<ul>
+  <li>注册(register/install)
+    <ul>
+      <li>在 <code class="highlighter-rouge">main js(app.js/bundle.js/...)</code> 里, 我们需要先注册我们的 <code class="highlighter-rouge">sw.js</code>
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--</span> <span class="nx">register</span> <span class="nx">our</span> <span class="s2">`sw.js`</span><span class="p">.</span> <span class="o">--&gt;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'load'</span><span class="p">,</span> <span class="k">async</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="s1">'serviceWorker'</span> <span class="k">in</span> <span class="nb">navigator</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="nb">navigator</span><span class="p">.</span><span class="nx">serviceWorker</span>
+        <span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">'sw.js'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">registration</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`SW registered! scope: </span><span class="p">${</span><span class="nx">registration</span><span class="p">.</span><span class="nx">scope</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c">&lt;!--</span> <span class="nx">If</span> <span class="nx">the</span> <span class="nx">SW</span> <span class="nx">install</span> <span class="nx">fail</span><span class="p">,</span> <span class="nx">it</span> <span class="nx">will</span> <span class="nx">be</span> <span class="nx">redundanted</span> <span class="nx">automaticly</span><span class="p">.</span> <span class="o">--&gt;</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`SW register fail`</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>安装中(installing)
+    <ul>
+      <li>这时候会触发 <em>SW</em> 的<code class="highlighter-rouge">install</code> 事件.</li>
+      <li>在 <code class="highlighter-rouge">install</code> 事件中, 我们可以调用 <code class="highlighter-rouge">event.waitUntil()</code>, <code class="highlighter-rouge">self.skipWaiting()</code> 两个事件.
+        <ul>
+          <li>event.waitUntil() –&gt; 传入一个 Promise 为参数, 等到该 Promise 为 resolve 状态为止.</li>
+          <li>self.skipWaiting() –&gt; <code class="highlighter-rouge">self</code> 是当前 context 的 global 变量, 执行该方法表示强制当前处在 waiting 状态的 Service Worker 进入 activate 状态.
+            <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--</span> <span class="nx">sw</span><span class="p">.</span><span class="nx">js</span> <span class="o">--&gt;</span>
+<span class="nb">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'install'</span><span class="p">,</span> <span class="k">async</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="c">&lt;!--</span> <span class="nx">Perform</span> <span class="nx">install</span> <span class="nx">steps</span> <span class="o">--&gt;</span>
+<span class="nx">e</span><span class="p">.</span><span class="nx">waitUntil</span><span class="p">(</span>
+  <span class="c">&lt;!--</span> <span class="nx">using</span> <span class="nx">cache</span><span class="o">/</span><span class="nx">creating</span> <span class="nx">cache</span> <span class="nx">files</span> <span class="o">--&gt;</span>
+    <span class="c">&lt;!--</span> <span class="nx">Perform</span> <span class="nx">cache</span> <span class="nx">steps</span> <span class="nx">code</span> <span class="o">--&gt;</span>
+  <span class="c">&lt;!--</span> <span class="nx">or</span> <span class="nx">we</span> <span class="nx">can</span> <span class="nx">skip</span> <span class="nx">the</span> <span class="nx">installing</span> <span class="nx">step</span> <span class="o">--&gt;</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nx">skipWaiting</span><span class="p">();</span>
+<span class="p">)</span>
+<span class="p">});</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>安装后(installed)
+    <ul>
+      <li>Service Worker 已经完成了安装, 并且等待其他的 Service Worker 线程被关闭。</li>
+    </ul>
+  </li>
+  <li>激活中(activating)
+    <ul>
+      <li>在这个状态下没有被其他的 Service Worker 控制的客户端, 允许当前的 worker 完成安装, 并且清除了其他的 worker 以及关联缓存的旧缓存资源, 等待新的 Service Worker 线程被激活.</li>
+      <li>这里会触发 <code class="highlighter-rouge">activate</code> 事件, 并且可以调用 <code class="highlighter-rouge">event.waitUntil()</code>, <code class="highlighter-rouge">self.clients.claim()</code> 两个事件
+        <ul>
+          <li>event.waitUntil()  –&gt; 传入一个 <code class="highlighter-rouge">Promise</code> 为参数, 等到该 <code class="highlighter-rouge">Promise</code> 为 <code class="highlighter-rouge">resolve</code> 状态为止.</li>
+          <li>self.clients.claim()  –&gt; 在 activate 事件回调中执行该方法表示取得页面的控制权, 这样之后打开页面都会使用版本更新的缓存. 旧的 Service Worker 脚本不再控制着页面, 之后会被停止.
+            <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'activate'</span><span class="p">,</span> <span class="nx">evnet</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="nx">event</span><span class="p">.</span><span class="nx">waitUntil</span><span class="p">(</span>
+<span class="c1">// Code here, we use to clean up/update the cache.</span>
+<span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>激活后(activated)
+    <ul>
+      <li>此时, 我们可以处理功能性的事件 – 请求/推送/后台同步(fetch/push/sync)
+        <ul>
+          <li>请求(fetch) – 当浏览器发起请求时，会触发 <code class="highlighter-rouge">fetch</code> 事件, SW激活后, 通过这个事件拦截网络请求</li>
+          <li>推送(push) – push 事件是为消息推送准备的. 这里会结合 <code class="highlighter-rouge">Push API</code> 和 <code class="highlighter-rouge">Notification API</code> 使用</li>
+          <li>后台同步(sync) – sync 事件由 background sync (后台同步)发出.
+            <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'fetch'</span><span class="p">,</span> <span class="k">async</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="c1">// code here should handle network-first or cache-first</span>
+<span class="nx">e</span><span class="p">.</span><span class="nx">respondWith</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>废弃(redundant)
+    <ul>
+      <li>这个状态表示一个 Service Worker 的生命周期结束.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://developers.google.com/web/fundamentals/primers/service-workers/images/sw-lifecycle.png" alt="Service Worker生命周期" /></p>
+
+<hr />
+
+<p>PS. This blog is a <code class="highlighter-rouge">PWA</code> Demo. Please have a look if you want.</p>
+
+  </div>
+  <span class="post-date">30/May/2018</span>
+</article>
+
+<div class="page-navigation">
+  
+  <a class="prev" href="/blog/pwa/pwa-manifest.html">&laquo; Progressive Web App - Manifest.json</a>
+   
+</div>
+
+  </section>
+  <footer id="footer">
+    <div class="contact wrapper">
+  <h3>CONTACT</h3>
+  <ul class="social-media-list">
+    <li class="fab fa-github">
+      <a href="https://github.com/saiwas">
+        saiwas
+      </a>
+    </li>
+    <li class="fa fa-envelope">
+      <a href="mailto:johnnysaiwas@gmail.com">
+        johnnysaiwas@gmail.com
+      </a>
+    </li>
+    <li class="fab fa-qq">
+      <a href="/">
+        464781456
+      </a>
+    </li>
+  </ul>
+  <p>A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take
+    away.</p>
+  <p id="legal">
+    Copyright (c) 2018 Saiwas | Powered by
+    <a href="http://jekyllrb.com">Jekyll</a> &amp;
+    <a href="http://github.com">GitHub</a> | designed &amp; build by
+    <a href="http://saiwas.github.io">saiwas</a>
+  </p>
+</div>
+  </footer>
+</body>
+<script type="text/javascript" src="/blog/js/application.js" async defer></script>
+</html>
