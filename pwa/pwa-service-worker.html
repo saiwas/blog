@@ -1,7 +1,6 @@
-
 <!DOCTYPE html>
-<html lang="en-US">
-	<head>
+<html>
+<head>
   <link rel="manifest" href="/blog/manifest.json">
   <link rel="preload" href="/blog/css/main.css" as="style" type="text/css" onload="this.rel='stylesheet'" crossorigin="anonymous">
   <link rel="preload" href="/blog/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
@@ -19,7 +18,7 @@
     <link rel="stylesheet" href="/blog/css/main.css">
   </noscript>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=1">
-  <title>Saiwas Blog | pwa</title>
+  <title>Saiwas Blog | Progressive Web App - Getting Start</title>
   <style>
     .avatar {
       width: 100px;
@@ -102,9 +101,10 @@
   </style>
 </head>
 
-  <body>
-		<header id="site-header" role="banner">
-			<div class="wrapper">
+
+<body>
+  <header id="site-header" role="banner">
+    <div class="wrapper">
   <img class="avatar" data-src="https://avatars2.githubusercontent.com/u/3829027?s=460&v=4" alt="saiwas-avatar">
   <h1 class="site-title">
     <a rel="author" href="/blog/">Saiwas</a>
@@ -113,107 +113,31 @@
   <p>Always hungry to keep learning.</p>
 </div>
 
-		</header>
-		<section class="container">
-			<aside id="categories">
-				<label class="title">
-  <p>Categories <i class="open-close-icon"></i></p>
-  <input type="checkbox" class="hide" onchange="toggleCategoryTab(this)">
-</label>
-<ul id="category-list" class="hide"
-  ontouchstart="setBorder(this, 'outset')"
-  ontouchend="setBorder(this, 'hidden');">
-  
-  
-  
-  
-    
-    <a href="/blog/pwa">
-      <li  class='active' 
-        data-show="pwa"
-        ontouchstart="setBorder(this, 'inset')"
-        ontouchend="setBorder(this, 'none');this.style.borderTop='1px solid #999'">
-          pwa
-          <span class="category-cnt">3</span>
-      </li>
-      </a>
-    
-  
-</ul>
-
-
-			</aside>
-			<main id="main-content">
-				<section class="">
-  
-    
-      <article
-  ontouchstart="setBorder(this, 'outset')"
-  ontouchend="setBorder(this, 'hidden');">
-  <h2 class="post-title">
-    <a href="/blog/pwa/pwa-getting-start.html">Progressive Web App - Getting Start</a>
-  </h2>
-  <p class="category">pwa</p>
-  <p class="excerpt">
-    前言
-在移动大时代的前期, Mobile Web一直受到了 用户体验枷锁 和 用户留存枷锁 两大枷锁的限制. 这促使互联网公司更愿意投入人力在 Native App 的开发上, 而忽略 Web.因此, Native App 顺势迅速成长起来, 大量的需求出现了, 也吸引了各类培训机构开启相关NA开发的课程, 吸引了很多人转做NA开发, 各种Native App的技术, 教程, 实践等, 也如雨后春笋般布满了各大技术论坛.
-
-
-  </p>
-  <span class="post-date">28/May/2018</span>
-  <a class="more" href="/blog/pwa/pwa-getting-start.html">Read More</a>
-</article>
-
-    
-  
-    
-      <article
-  ontouchstart="setBorder(this, 'outset')"
-  ontouchend="setBorder(this, 'hidden');">
-  <h2 class="post-title">
-    <a href="/blog/pwa/pwa-service-worker.html">Progressive Web App - Getting Start</a>
-  </h2>
-  <p class="category">pwa</p>
-  <p class="excerpt">
+  </header>
+  <section class= "container">
+    <article id="post-detail">
+  <header>
+    <h2 class="post-title">
+      <a href="#">Progressive Web App - Getting Start</a>
+    </h2>
+    <p class="category">pwa</p>
+  </header>
+  <div class="excerpt">
     
 
-  </p>
+  </div>
   <span class="post-date">30/May/2018</span>
-  <a class="more" href="/blog/pwa/pwa-service-worker.html">Read More</a>
 </article>
 
-    
+<div class="page-navigation">
   
-    
-      <article
-  ontouchstart="setBorder(this, 'outset')"
-  ontouchend="setBorder(this, 'hidden');">
-  <h2 class="post-title">
-    <a href="/blog/pwa/pwa-manifest.html">Progressive Web App - Manifest.json</a>
-  </h2>
-  <p class="category">pwa</p>
-  <p class="excerpt">
-    Web App Manifest
-Web应用程序清单在一个JSON文本文件中提供有关应用程序的信息(如名称,作者,图标和描述),manifest 的目的是将Web应用程序安装到设备的主屏幕,为用户提供更快的访问和更丰富的体验.
+  <a class="prev" href="/blog/pwa/pwa-manifest.html">&laquo; Progressive Web App - Manifest.json</a>
+   
+</div>
 
-
-  </p>
-  <span class="post-date">29/May/2018</span>
-  <a class="more" href="/blog/pwa/pwa-manifest.html">Read More</a>
-</article>
-
-    
-  
-</section>
-
-<!-- pagination -->
-
-
-
-			</main>
-		</section>
-		<footer id="footer">
-				<div class="contact wrapper">
+  </section>
+  <footer id="footer">
+    <div class="contact wrapper">
   <h3>CONTACT</h3>
   <ul class="social-media-list">
     <li class="fab fa-github">
@@ -241,7 +165,7 @@ Web应用程序清单在一个JSON文本文件中提供有关应用程序的信�
     <a href="http://saiwas.github.io">saiwas</a>
   </p>
 </div>
-		</footer>
-	</body>
-	<script type="text/javascript" src="/blog/js/application.js" async defer></script>
+  </footer>
+</body>
+<script type="text/javascript" src="/blog/js/application.js" async defer></script>
 </html>
