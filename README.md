@@ -12,5 +12,8 @@ This blog will mark down the skills I learned, the articles I read and those are
 
 ### TO DO LIST
 **01/06/2018**
-1. - [ ] Try to build up a PWA for this website
+1. - [ ] Add a series articles for PWA.
+1. - [ ] React Native.
+1. - [ ] Algorithm
+1. - [x] Try to build up a PWA for this website
 1. - [ ] Add the SEO tags (_Maybe will finish after post some articles_)
