@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="manifest" href="/blog/manifest.json">
+  <link rel="preload" href="/blog/css/main.css" as="style" type="text/css" onload="this.rel='stylesheet'" crossorigin="anonymous">
+  <link rel="preload" href="/blog/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/blog/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <meta name="theme-color" content="#2196f3">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#2196f3">
+  <meta name="apple-mobile-web-app-title" content="Saiwas Blog">
+  <link rel="apple-touch-icon" href="/blog/images/icons/icon-152x152.png">
+  <!-- Add to home screen for windows -->
+  <meta name="msapplication-TileImage" content="/blog/images/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#2196f3">
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/main.css">
+  </noscript>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=1">
+  <title>Saiwas Blog | Flex Layout</title>
+  <style>
+    .avatar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      border-radius: 10%;
+    }
+
+    #site-header {
+      background-color: black;
+      border-top: 5px solid #424242;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #main-content {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5em 0;
+      margin: 0 auto;
+      max-width: 1250px;
+    }
+
+    #footer {
+      background-color: black;
+      color: white;
+      padding: 1.5rem;
+    }
+
+    @media (min-width: 800px) {
+      body {
+        display: grid;
+        grid-template-columns: 20% 80%;
+        grid-template-rows: 1fr;
+        grid-template-areas: "header main" "footer main"
+      }
+      .avatar {
+        width: 150px;
+        height: 150px;
+      }
+      .container {
+        grid-area: main;
+        margin: 0;
+        max-width: none;
+        position: relative;
+      }
+      #categories {
+        margin: 0;
+        overflow: scroll;
+      }
+      #categories ul {
+        padding: 5px 2em;
+      }
+      #categories ul li {
+        border: 2px solid gold;
+        border-radius: 15px;
+        display: inline-block;
+        margin: 5px;
+        min-width: 15%;
+        height: 2em;
+      }
+      #categories ul li:hover {
+        border-style: ridge;
+      }
+      .category-cnt {
+        margin: 10px;
+      }
+      #main-content {
+        padding: 0;
+      }
+      .page-navigation a {
+        font-size: unset;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+  <header id="site-header" role="banner">
+    <div class="wrapper">
+  <img class="avatar" data-src="https://avatars2.githubusercontent.com/u/3829027?s=460&v=4" alt="saiwas-avatar">
+  <h1 class="site-title">
+    <a rel="author" href="/blog/">Saiwas</a>
+  </h1>
+  <p>I am a web developer.</p>
+  <p>Always hungry to keep learning.</p>
+</div>
+
+  </header>
+  <section class= "container">
+    <article id="post-detail">
+  <header>
+    <h2 class="post-title">
+      <a href="#">Flex Layout</a>
+    </h2>
+    <p class="category">css_layout</p>
+  </header>
+  <div class="excerpt">
+    <h2 id="背景">背景</h2>
+<p>传统的<em>Css</em>布局, 都是在基于 <em>盒状模型</em> 的基础上, 使用 <code class="highlighter-rouge">display</code> + <code class="highlighter-rouge">position</code> + <code class="highlighter-rouge">float</code> 进行布局. 这种布局对于一些特殊布局非常不方便, 设计 <code class="highlighter-rouge">Response Design</code> 起来也十分麻烦.</p>
+
+<p>2009年, W3C 提出了一种新的方案–Flex 布局, 可以简便,完整,响应式地实现各种页面布局, 现在 <em>97.3%</em> 的浏览器已经支持这种布局. 请参考 <a href="https://caniuse.com/#feat=flexbox">Can I Use</a></p>
+
+<hr />
+
+<h2 id="flex-layout-基本元素概念">Flex Layout 基本元素概念</h2>
+<p><strong>Flex Layout</strong> 最重要的两个概念 – <code class="highlighter-rouge">flex container</code> 和 <code class="highlighter-rouge">flex item</code>.</p>
+<ul>
+  <li><code class="highlighter-rouge">flex container</code> – 所有采用 <em>Flex</em> 布局的元素, 叫 <strong>Flex 容器</strong>.</li>
+  <li><code class="highlighter-rouge">flex item</code> – <em>Container</em> 内的所有子元素叫 <strong>容器成员</strong>.</li>
+</ul>
+
+<p><strong>Flex布局原理解释:</strong></p>
+
+<p><img src="https://developer.mozilla.org/files/3739/flex_terms.png" alt="Flex Box 布局原理" /></p>
+
+<ul>
+  <li>主轴(<code class="highlighter-rouge">main axis</code>) – Flex Box布局的主要轴, <em>注意</em> : 这不一定是水平的, 主要取决于 <code class="highlighter-rouge">flex-direction</code></li>
+  <li>交叉轴(<code class="highlighter-rouge">cross axis</code>) – 垂直于 <code class="highlighter-rouge">main axis</code>. 方向取决于<code class="highlighter-rouge">main axis</code>.</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><code class="highlighter-rouge">main-start</code></td>
+          <td><code class="highlighter-rouge">main-end</code> – 该轴的开始和结束被称为 <code class="highlighter-rouge">main start</code> 和 <code class="highlighter-rouge">main end</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><code class="highlighter-rouge">cross-start</code></td>
+          <td><code class="highlighter-rouge">cross-end</code> – 该轴的开始和结束被称为 <code class="highlighter-rouge">cross start</code> 和 <code class="highlighter-rouge">cross end</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><code class="highlighter-rouge">main size</code> – 主轴 <code class="highlighter-rouge">main axis</code> 的空间</li>
+  <li>
+    <h2 id="cross-size--交叉轴-cross-axis-的空间"><code class="highlighter-rouge">cross size</code> – 交叉轴 <code class="highlighter-rouge">cross axis</code> 的空间</h2>
+  </li>
+</ul>
+
+<h2 id="flex-contain-用法">Flex Contain 用法</h2>
+<p><strong><em>主要属性  :</em></strong></p>
+<ol>
+  <li><code class="highlighter-rouge">flex-direction</code></li>
+  <li><code class="highlighter-rouge">flex-wrap</code></li>
+  <li><code class="highlighter-rouge">flex-flow</code></li>
+  <li><code class="highlighter-rouge">justify-content</code></li>
+  <li><code class="highlighter-rouge">align-items</code></li>
+  <li><code class="highlighter-rouge">align-content</code></li>
+</ol>
+
+<h3 id="display-设置成-flex">Display 设置成 Flex</h3>
+<p>第一步需要先把 <em>容器</em> <code class="highlighter-rouge">display</code> 设置成 <code class="highlighter-rouge">flex</code>.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span> <span class="c">/* or inline-flex */</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="flex-direction">flex-direction</h3>
+<p>设置主轴方向:</p>
+<ul>
+  <li>row(default) – 水平方向, <code class="highlighter-rouge">main-start</code> 在 <em>左</em></li>
+  <li>row-reverse – 水平方向, <code class="highlighter-rouge">main-start</code> 在 <em>右</em></li>
+  <li>column – 垂直方向, <code class="highlighter-rouge">cross-start</code> 在 <em>上</em></li>
+  <li>column-reverse – 垂直方向, <code class="highlighter-rouge">cross-start</code> 在 <em>下</em></li>
+</ul>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2013/04/flex-direction2.svg" alt="flex-direction 图解" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">flex-direction</span><span class="p">:</span> <span class="n">row</span> <span class="err">|</span> <span class="n">row-reverse</span> <span class="err">|</span> <span class="n">column</span> <span class="err">|</span> <span class="n">column-reverse</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="flex-wrap">flex-wrap</h3>
+<p>设置 <code class="highlighter-rouge">flex item</code> 换行方式:</p>
+
+<ul>
+  <li>nowrap(default) – 不换行</li>
+  <li>wrap – 由上往下换行</li>
+  <li>wrap-reverse – 由下往上换行, 第一行在最底.</li>
+</ul>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2014/05/flex-wrap.svg" alt="flex-wrap 图解" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span><span class="p">{</span>
+  <span class="nl">flex-wrap</span><span class="p">:</span> <span class="nb">nowrap</span> <span class="err">|</span> <span class="n">wrap</span> <span class="err">|</span> <span class="n">wrap-reverse</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="justify-content">justify-content</h3>
+<p>主轴 <code class="highlighter-rouge">main axis</code> 上的对齐方式:</p>
+<ul>
+  <li><code class="highlighter-rouge">flex-start (default)</code> – 左对齐</li>
+  <li><code class="highlighter-rouge">flex-end</code> – 右对齐</li>
+  <li><code class="highlighter-rouge">center</code> – 居中</li>
+  <li><code class="highlighter-rouge">space-between</code> – 两端对齐, <code class="highlighter-rouge">item</code> 之间的间隔都相等</li>
+  <li><code class="highlighter-rouge">space-around</code> – 每个 <code class="highlighter-rouge">item</code> 两侧的间隔相等.</li>
+</ul>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2013/04/justify-content-2.svg" alt="justify-content 图解" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">justify-content</span><span class="p">:</span> <span class="n">flex-start</span> <span class="err">|</span> <span class="n">flex-end</span> <span class="err">|</span> <span class="nb">center</span> <span class="err">|</span> <span class="n">space-between</span> <span class="err">|</span> <span class="n">space-around</span> <span class="err">|</span> <span class="n">space-evenly</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="align-items">align-items</h3>
+<p>交叉轴 <code class="highlighter-rouge">cross axis</code> 上的对其方式:</p>
+<ul>
+  <li><code class="highlighter-rouge">flex-start</code> – 上对齐</li>
+  <li><code class="highlighter-rouge">flex-end</code> – 下对齐</li>
+  <li><code class="highlighter-rouge">center</code> – 居中</li>
+  <li><code class="highlighter-rouge">baseline</code> – 基于第一个 <code class="highlighter-rouge">item</code> 的文字基线对齐</li>
+  <li><code class="highlighter-rouge">stretch(default)</code> – 占满整个 <code class="highlighter-rouge">flex contain</code> 的高度</li>
+</ul>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2014/05/align-items.svg" alt="align-items 图解" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">align-items</span><span class="p">:</span> <span class="n">flex-start</span> <span class="err">|</span> <span class="n">flex-end</span> <span class="err">|</span> <span class="nb">center</span> <span class="err">|</span> <span class="nb">baseline</span> <span class="err">|</span> <span class="n">stretch</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="align-content">align-content</h3>
+<p>当内容出现多行 <code class="highlighter-rouge">item</code> 时(多条 <code class="highlighter-rouge">main axis</code>)的对其方式. 如果只有一条的时候, 该属性不起效.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">flex-start</code> – 对齐 <code class="highlighter-rouge">cross axis</code> 起端.</li>
+  <li><code class="highlighter-rouge">flex-end</code> – 对齐 <code class="highlighter-rouge">cross axis</code> 终端.</li>
+  <li><code class="highlighter-rouge">center</code> – 居中.</li>
+  <li><code class="highlighter-rouge">space-between</code> – 对齐 <code class="highlighter-rouge">cross axis</code> 两端, 上下行间距相等, 与 <code class="highlighter-rouge">justify-content</code> 类似.</li>
+  <li><code class="highlighter-rouge">space-around</code> – 每根轴线两侧的间隔都相等, 与 <code class="highlighter-rouge">justify-content</code> 类似.</li>
+  <li><code class="highlighter-rouge">stretch(default)</code> – 占满整个 <code class="highlighter-rouge">cross axis</code>.</li>
+</ul>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2013/04/align-content.svg" alt="align-content 图解" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">align-content</span><span class="p">:</span> <span class="n">flex-start</span> <span class="err">|</span> <span class="n">flex-end</span> <span class="err">|</span> <span class="nb">center</span> <span class="err">|</span> <span class="n">space-between</span> <span class="err">|</span> <span class="n">space-around</span> <span class="err">|</span> <span class="n">stretch</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="flex-item-用法">Flex Item 用法</h2>
+<p><strong>主要属性</strong></p>
+<ul>
+  <li>order</li>
+  <li>flex-grow</li>
+  <li>flex-shrink</li>
+  <li>flex-basis</li>
+  <li>flex</li>
+  <li>align-self</li>
+</ul>
+
+<h3 id="order">order</h3>
+<blockquote>
+  <p>设置 <code class="highlighter-rouge">item</code> 的排列顺序, default: 0, 数值越小越靠前.</p>
+</blockquote>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2013/04/order-2.svg" alt="order 图解" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">order</span><span class="p">:</span> <span class="err">&lt;</span><span class="n">integer</span><span class="err">&gt;</span><span class="p">;</span> <span class="c">/* default is 0 */</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="flex-grow">flex-grow</h3>
+<ul>
+  <li>设置 <code class="highlighter-rouge">item</code> 的放大比例. default: 0, 也就是不放大.</li>
+  <li>如果所有的 <code class="highlighter-rouge">item</code> 都设置为 1, 则将 <code class="highlighter-rouge">contain</code> 内的 <em>剩余空间</em> 平均分给所有 <code class="highlighter-rouge">item</code></li>
+  <li>以上一步为基础, 如果把其中一个 <code class="highlighter-rouge">item</code> 设置成 2, 则该 <code class="highlighter-rouge">item</code> 得到的空间是其他的 <strong>两倍</strong></li>
+</ul>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2014/05/flex-grow.svg" alt="order 图解" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">flex-grow</span><span class="p">:</span> <span class="err">&lt;</span><span class="n">number</span><span class="err">&gt;</span><span class="p">;</span> <span class="c">/* default 0 */</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="flex-shrink">flex-shrink</h3>
+
+<p><em>Demo :</em> https://codepen.io/saiwas/pen/MXwGVe</p>
+<ul>
+  <li>设置 <code class="highlighter-rouge">item</code> 的缩放比例. default: 1</li>
+  <li>只有所有 <code class="highlighter-rouge">item</code> 的宽度总和 <strong>大于</strong> <code class="highlighter-rouge">Contain</code> 宽度, 该属性才生效.</li>
+  <li>如果该属性设为 0, 则该 <code class="highlighter-rouge">item</code> 不会缩放</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">flex-shrink</span><span class="p">:</span> <span class="err">&lt;</span><span class="n">number</span><span class="err">&gt;</span><span class="p">;</span> <span class="c">/* default 1 */</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="flex-basis">flex-basis</h3>
+<p>设置 <code class="highlighter-rouge">flex item</code> 在主轴方向上的初始大小</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">flex-basis</span><span class="p">:</span> <span class="err">&lt;</span><span class="n">length</span><span class="err">&gt;</span> <span class="err">|</span> <span class="nb">auto</span><span class="p">;</span> <span class="c">/* default auto */</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h3 id="flex">flex</h3>
+<p><em>Demo :</em> https://codepen.io/saiwas/pen/rKVvJj</p>
+
+<ul>
+  <li>设置 <code class="highlighter-rouge">flex item</code> 如何伸长或缩短以适应<code class="highlighter-rouge">flex contain</code>中的可用空间.</li>
+  <li>可以同时设置 <code class="highlighter-rouge">flex-grow</code>, <code class="highlighter-rouge">flex-shrink</code>, <code class="highlighter-rouge">flex-basis</code>.</li>
+  <li>取值为 <code class="highlighter-rouge">auto</code>, <code class="highlighter-rouge">initial</code>, <code class="highlighter-rouge">none</code> 或一个无单位数
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+<span class="nl">flex</span><span class="p">:</span> <span class="nb">none</span> <span class="err">|</span> <span class="p">[</span> <span class="err">&lt;</span><span class="s2">'flex-grow'</span><span class="err">&gt;</span> <span class="err">||</span> <span class="err">&lt;</span><span class="s2">'flex-shrink'</span><span class="err">&gt;</span> <span class="err">||</span> <span class="err">&lt;</span><span class="s2">'flex-basis'</span><span class="err">&gt;</span> <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <h3 id="align-self">align-self</h3>
+    <p>设置单个 <code class="highlighter-rouge">item</code> 的 <strong>对齐方式</strong>. 会覆盖 <code class="highlighter-rouge">align-items</code> 属性.</p>
+  </li>
+</ul>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2014/05/align-self.svg" alt="align-self 图解" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item</span> <span class="p">{</span>
+  <span class="nl">align-self</span><span class="p">:</span> <span class="nb">auto</span> <span class="err">|</span> <span class="n">flex-start</span> <span class="err">|</span> <span class="n">flex-end</span> <span class="err">|</span> <span class="nb">center</span> <span class="err">|</span> <span class="nb">baseline</span> <span class="err">|</span> <span class="n">stretch</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="总结">总结</h2>
+<p><strong>Flex Layout</strong> 相对 <em>传统布局</em> 来说, 在控制排版的方面十分方便. 而且更加适用于现在的 <code class="highlighter-rouge">Response Design</code>. 兼容性方面也相对高.</p>
+
+<blockquote>
+  <p>ps. 本博客大部分的排版都应用了 Flex 布局</p>
+</blockquote>
+
+<p>更加详细的教程可以参考 : <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">Guide To Flexbox</a></p>
+
+  </div>
+  <span class="post-date">31/May/2018</span>
+</article>
+
+<div class="page-navigation">
+  
+  <a class="prev" href="/blog/pwa/pwa-service-worker.html">&laquo; Progressive Web App - Service Worker</a>
+   
+</div>
+
+  </section>
+  <footer id="footer">
+    <div class="contact wrapper">
+  <h3>CONTACT</h3>
+  <ul class="social-media-list">
+    <li class="fab fa-github">
+      <a href="https://github.com/saiwas">
+        saiwas
+      </a>
+    </li>
+    <li class="fa fa-envelope">
+      <a href="mailto:johnnysaiwas@gmail.com">
+        johnnysaiwas@gmail.com
+      </a>
+    </li>
+    <li class="fab fa-qq">
+      <a href="/">
+        464781456
+      </a>
+    </li>
+  </ul>
+  <p>A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take
+    away.</p>
+  <p id="legal">
+    Copyright (c) 2018 Saiwas | Powered by
+    <a href="http://jekyllrb.com">Jekyll</a> &amp;
+    <a href="http://github.com">GitHub</a> | designed &amp; build by
+    <a href="http://saiwas.github.io">saiwas</a>
+  </p>
+</div>
+  </footer>
+</body>
+<script type="text/javascript" src="/blog/js/application.js" async defer></script>
+</html>

@@ -12,8 +12,19 @@ This blog will mark down the skills I learned, the articles I read and those are
 
 ### TO DO LIST
 **01/06/2018**
-1. - [ ] Add a series articles for PWA.
-1. - [ ] React Native.
+1. - [ ] Data Struct
 1. - [ ] Algorithm
-1. - [x] Try to build up a PWA for this website
+1. - [ ] React Native.
+1. - [ ] React/Redux
+1. - [ ] Webpacker
+1. - [ ] Docker/K8s
+1. - [ ] Python/Ruby
+1. - [ ] Database
+1. - [ ] NodeJs
+1. - [ ] Design Pattern
+1. - [ ] Some thing about AI
+1. - [ ] Distributed System
+1. - [ ] Regional chain
+1. - [x] Try to build up a PWA for this website.
+1. - [x] Add a series articles for PWA.
 1. - [ ] Add the SEO tags (_Maybe will finish after post some articles_)
