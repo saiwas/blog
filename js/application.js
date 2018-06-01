@@ -38,6 +38,10 @@ window.addEventListener('load', async e => {
         .then((registration) => {
           console.log(`SW registered! scope: ${registration.scope}`);
       });
+      // Then later, request a one-off sync:
+      navigator.serviceWorker.ready.then(function(swRegistration) {
+        return swRegistration.sync.register('syncEvent');
+      });
     } catch (error) {
       console.log(`SW register fail`);
     }

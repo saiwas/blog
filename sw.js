@@ -1,5 +1,4 @@
 const staticAsscess = [
-  './',
   './css/main.css',
   './fonts/fa-brands-400.woff2',
   './fonts/fa-solid-900.woff2',
@@ -16,10 +15,15 @@ self.addEventListener('fetch', async e => {
   let req = e.request;
   let url = new URL(req.url);
 
-  let response = url.origin === url.origin ? cacheFirst(req) : networkFirst(req);
+  let response = url.origin === location.origin ? cacheFirst(req) : networkFirst(req);
   e.respondWith(response);
 });
 
+self.addEventListener('sync', function(event) {
+  if (event.tag == 'syncEvent') {
+    networkFirst(location.url)
+  }
+});
 
 async function cacheFirst(request) {
   let cachedResponse = await caches.match(request);
