@@ -1,10 +1,10 @@
 ---
 layout: default
-title: css-layout
-permalink: /css-layout/
+title: css_layout
+permalink: /css_layout/
 pagination:
   enabled: true
-  category: css-layout
+  category: css_layout
   permalink: /:num/
   sort_field: 'title'
   sort_reverse: false
