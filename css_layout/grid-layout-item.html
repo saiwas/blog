@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="manifest" href="/blog/manifest.json">
+  <link rel="preload" href="/blog/css/main.css" as="style" type="text/css" onload="this.rel='stylesheet'" crossorigin="anonymous">
+  <link rel="stylesheet" href="/blog/css/main.css">
+  <link rel="preload" href="/blog/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/blog/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <meta name="theme-color" content="#2196f3">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#2196f3">
+  <meta name="apple-mobile-web-app-title" content="Saiwas Blog">
+  <link rel="apple-touch-icon" href="/blog/images/icons/icon-152x152.png">
+  <!-- Add to home screen for windows -->
+  <meta name="msapplication-TileImage" content="/blog/images/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#2196f3">
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/main.css">
+  </noscript>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=1">
+  <title>Saiwas Blog | Grid Layout -- Item</title>
+  <style>
+    .avatar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      border-radius: 10%;
+    }
+
+    #site-header {
+      background-color: black;
+      border-top: 5px solid #424242;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #main-content {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5em 0;
+      margin: 0 auto;
+      max-width: 1250px;
+    }
+
+    #footer {
+      background-color: black;
+      color: white;
+      padding: 1.5rem;
+    }
+
+    @media (min-width: 800px) {
+      body {
+        display: grid;
+        grid-template-columns: 20% 80%;
+        grid-template-rows: 1fr;
+        grid-template-areas: "header main" "footer main"
+      }
+      .avatar {
+        width: 150px;
+        height: 150px;
+      }
+      .container {
+        grid-area: main;
+        margin: 0;
+        max-width: none;
+        position: relative;
+      }
+      #categories {
+        margin: 0;
+        overflow: scroll;
+      }
+      #categories ul {
+        padding: 5px 2em;
+      }
+      #categories ul li {
+        border: 2px solid gold;
+        border-radius: 15px;
+        display: inline-block;
+        margin: 5px;
+        min-width: 15%;
+        height: 2em;
+      }
+      #categories ul li:hover {
+        border-style: ridge;
+      }
+      .category-cnt {
+        margin: 10px;
+      }
+      #main-content {
+        padding: 0;
+      }
+      .page-navigation a {
+        font-size: unset;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+  <header id="site-header" role="banner">
+    <div class="wrapper">
+  <img class="avatar" data-src="https://avatars2.githubusercontent.com/u/3829027?s=460&v=4" alt="saiwas-avatar">
+  <h1 class="site-title">
+    <a rel="author" href="/blog/">Saiwas</a>
+  </h1>
+  <p>I am a web developer.</p>
+  <p>Always hungry to keep learning.</p>
+</div>
+
+  </header>
+  <section class= "container">
+    <article id="post-detail">
+  <header>
+    <h2 class="post-title">
+      <a href="#">Grid Layout -- Item</a>
+    </h2>
+    <p class="category">css_layout</p>
+  </header>
+  <div class="excerpt">
+    <h2 id="grid-item用法">Grid Item用法</h2>
+<p>主要属性:</p>
+<ol>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>grid-column-start</td>
+          <td>grid-column-end</td>
+          <td>grid-row-start</td>
+          <td>grid-row-end</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>grid-column</td>
+          <td>grid-row</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>grid-area</li>
+  <li>justify-self</li>
+  <li>align-self</li>
+  <li>place-self</li>
+</ol>
+
+<hr />
+
+<h3 id="grid-column-start--grid-column-end--grid-row-start--grid-row-end">grid-column-start | grid-column-end | grid-row-start | grid-row-end</h3>
+<blockquote>
+  <p>在网格布局中, 设置特定的 <code class="highlighter-rouge">行</code>/<code class="highlighter-rouge">列</code> 来设置一个 <code class="highlighter-rouge">Grid Item</code>的位置
+<code class="highlighter-rouge">grid-column-start/grid-row-start</code> 设置 <code class="highlighter-rouge">Item</code> 的开始位置,
+<code class="highlighter-rouge">grid-column-end/grid-row-end</code> 设置结束位置</p>
+</blockquote>
+
+<p><em>grid-column-end</em> / <em>grid-row-end</em> 如果没有设置, default 为 <code class="highlighter-rouge">span 1</code>. <code class="highlighter-rouge">Item</code> 可以重叠, 我们可以使用 <code class="highlighter-rouge">z-index</code> 来控制重叠的顺序.</p>
+
+<p>取值:</p>
+<ul>
+  <li><strong><code class="highlighter-rouge">line &lt;number&gt;/&lt;name&gt;</code></strong> – <em>行/列</em> 的编号或者 <em>行/列</em> 的名称</li>
+  <li><strong><code class="highlighter-rouge">span &lt;name&gt;</code></strong> – <code class="highlighter-rouge">Item</code> 跨域的 <code class="highlighter-rouge">Cell</code> 名字.</li>
+  <li><strong><code class="highlighter-rouge">span &lt;number&gt;</code></strong> – <code class="highlighter-rouge">Item</code> 将跨越的 <code class="highlighter-rouge">Cell</code> 数量.</li>
+  <li><strong><code class="highlighter-rouge">auto</code></strong> – 表示自动放置，自动跨度或默认跨度.</li>
+</ul>
+
+<p>例子:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item-a</span> <span class="p">{</span>
+  <span class="py">grid-column-start</span><span class="p">:</span> <span class="m">2</span><span class="p">;</span>
+  <span class="py">grid-column-end</span><span class="p">:</span> <span class="n">five</span><span class="p">;</span>
+  <span class="py">grid-row-start</span><span class="p">:</span> <span class="n">row1-start</span>
+  <span class="n">grid-row-end</span><span class="p">:</span> <span class="m">3</span>
+<span class="p">}</span>
+
+<span class="nc">.item-b</span> <span class="p">{</span>
+  <span class="py">grid-column-start</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+  <span class="py">grid-column-end</span><span class="p">:</span> <span class="n">span</span> <span class="n">col4-start</span><span class="p">;</span>
+  <span class="py">grid-row-start</span><span class="p">:</span> <span class="m">2</span>
+  <span class="n">grid-row-end</span><span class="p">:</span> <span class="n">span</span> <span class="m">2</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-start-end-a.png" alt="例子A" /></p>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/11/grid-start-end-b.png" alt="例子B" /></p>
+
+<hr />
+
+<h3 id="grid-column--grid-row">grid-column | grid-row</h3>
+<ul>
+  <li><strong>grid-column</strong> 是 <code class="highlighter-rouge">grid-column-start</code> + <code class="highlighter-rouge">grid-column-end</code> 缩写</li>
+  <li><strong>grid-row</strong> 是 <code class="highlighter-rouge">grid-row-start</code> + <code class="highlighter-rouge">grid-row-end</code> 缩写</li>
+  <li>如果没有设置, <code class="highlighter-rouge">default: span 1</code></li>
+</ul>
+
+<p>取值:
+<code class="highlighter-rouge">&lt;start-line&gt;</code> / <code class="highlighter-rouge">&lt;end-line&gt;</code> – 设置开始位置, 和跨域 <code class="highlighter-rouge">cell</code> 的数量.</p>
+
+<p>例子:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item-c</span> <span class="p">{</span>
+  <span class="nl">grid-column</span><span class="p">:</span> <span class="m">3</span> <span class="p">/</span> <span class="n">span</span> <span class="m">2</span><span class="p">;</span>
+  <span class="nl">grid-row</span><span class="p">:</span> <span class="n">third-line</span> <span class="p">/</span> <span class="m">4</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<table>
+  <tbody>
+    <tr>
+      <td>![grid-column</td>
+      <td>grid-row](https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-start-end-c.png)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="grid-area">grid-area</h3>
+<p>在 <code class="highlighter-rouge">container</code> 可以通过 <code class="highlighter-rouge">grid-template-areas</code> 设置布局, <code class="highlighter-rouge">item</code> 设置此属性, 可以轻松放置到指定的区域.</p>
+
+<p>取值:</p>
+<ul>
+  <li><code class="highlighter-rouge">&lt;name&gt;</code> - 自定义区域的名字</li>
+  <li><code class="highlighter-rouge">&lt;row-start&gt;</code>/<code class="highlighter-rouge">&lt;column-start&gt;</code>/<code class="highlighter-rouge">&lt;row-end&gt;</code>/<code class="highlighter-rouge">&lt;column-end&gt;</code> - <em>行数</em> / <em>行名</em></li>
+</ul>
+
+<p>例子:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="py">grid-template-areas</span><span class="p">:</span>
+    <span class="s1">". | . | 300px | header | header"</span>
+    <span class="s1">". | . | 300px | header | header"</span>
+    <span class="s1">". | . | 300px | header | header"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.item-d</span> <span class="p">{</span>
+  <span class="py">grid-area</span><span class="p">:</span> <span class="n">header</span>
+<span class="p">}</span>
+
+<span class="c">/* It's the same as above */</span>
+<span class="nc">.item-d</span> <span class="p">{</span>
+  <span class="py">grid-area</span><span class="p">:</span> <span class="m">1</span> <span class="p">/</span> <span class="n">col4-start</span> <span class="p">/</span> <span class="n">last-line</span> <span class="p">/</span> <span class="m">6</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-start-end-d.png" alt="grid-area" /></p>
+
+<hr />
+
+<h3 id="justify-self">justify-self</h3>
+<p>设置 <code class="highlighter-rouge">cell</code> 中的 <code class="highlighter-rouge">item</code> 对齐方式.</p>
+
+<p>取值:</p>
+<ul>
+  <li><code class="highlighter-rouge">start</code> - <code class="highlighter-rouge">cell</code> 内, <code class="highlighter-rouge">item</code> 左端对齐</li>
+  <li><code class="highlighter-rouge">end</code> - <code class="highlighter-rouge">cell</code> 内, <code class="highlighter-rouge">item</code> 右端对齐</li>
+  <li><code class="highlighter-rouge">center</code> - <code class="highlighter-rouge">cell</code> 内, <code class="highlighter-rouge">item</code> 居中</li>
+  <li><code class="highlighter-rouge">stretch</code> - 填满整个 <code class="highlighter-rouge">cell</code></li>
+</ul>
+
+<p>例子:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item-a</span> <span class="p">{</span>
+  <span class="py">justify-self</span><span class="p">:</span> <span class="n">start</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-justify-self-start.png" alt="justify-self:start" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item-a</span> <span class="p">{</span>
+  <span class="py">justify-self</span><span class="p">:</span> <span class="n">end</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-justify-self-end.png" alt="justify-self:end" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item-a</span> <span class="p">{</span>
+  <span class="py">justify-self</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-justify-self-center.png" alt="justify-self:center" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item-a</span> <span class="p">{</span>
+  <span class="py">justify-self</span><span class="p">:</span> <span class="n">stretch</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-justify-self-stretch.png" alt="justify-self:stretch" /></p>
+
+<hr />
+
+<h3 id="align-self">align-self</h3>
+<p>设置 <code class="highlighter-rouge">cell</code> 中的 <code class="highlighter-rouge">item</code> 对齐方式.</p>
+
+<p>取值:</p>
+<ul>
+  <li><code class="highlighter-rouge">start</code> - <code class="highlighter-rouge">cell</code> 内, <code class="highlighter-rouge">item</code> 上端对齐</li>
+  <li><code class="highlighter-rouge">end</code> - <code class="highlighter-rouge">cell</code> 内, <code class="highlighter-rouge">item</code> 下端对齐</li>
+  <li><code class="highlighter-rouge">center</code> - <code class="highlighter-rouge">cell</code> 内, <code class="highlighter-rouge">item</code> 居中</li>
+  <li><code class="highlighter-rouge">stretch</code> - 填满整个 <code class="highlighter-rouge">cell</code></li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item-a</span> <span class="p">{</span>
+  <span class="nl">align-self</span><span class="p">:</span> <span class="n">start</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-align-self-start.png" alt="align-self: start" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item-a</span> <span class="p">{</span>
+  <span class="nl">align-self</span><span class="p">:</span> <span class="n">end</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-align-self-end.png" alt="align-self: end" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item-a</span> <span class="p">{</span>
+  <span class="nl">align-self</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-align-self-center.png" alt="align-self: center" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item-a</span> <span class="p">{</span>
+  <span class="nl">align-self</span><span class="p">:</span> <span class="n">stretch</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-align-self-stretch.png" alt="align-self: stretch" /></p>
+
+<hr />
+
+<h3 id="place-self">place-self</h3>
+<p>同时设置 <code class="highlighter-rouge">align-self</code> 和 <code class="highlighter-rouge">justify-self</code>
+例子:</p>
+
+<p>取值:</p>
+<ul>
+  <li><code class="highlighter-rouge">auto</code> – 默认值</li>
+  <li><code class="highlighter-rouge">&lt;align-self&gt;</code> / <code class="highlighter-rouge">&lt;justify-self&gt;</code> – 如果 <code class="highlighter-rouge">justify-self</code> 缺少, 会默认取 <code class="highlighter-rouge">align-self</code> 的值.</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item-a</span> <span class="p">{</span>
+  <span class="py">place-self</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2018/04/grid-place-self-center.png" alt="place-self: center" /></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.item-a</span> <span class="p">{</span>
+  <span class="py">place-self</span><span class="p">:</span> <span class="nb">center</span> <span class="n">stretch</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-align-self-center.png" alt="place-self: center stretch;" /></p>
+
+  </div>
+  <span class="post-date">01/Jun/2018</span>
+</article>
+
+<div class="page-navigation">
+  
+  <a class="prev" href="/blog/css_layout/grid-layout-container.html">&laquo; Grid Layout -- Container</a>
+   
+</div>
+
+  </section>
+  <footer id="footer">
+    <div class="contact wrapper">
+  <h3>CONTACT</h3>
+  <ul class="social-media-list">
+    <li class="fab fa-github">
+      <a href="https://github.com/saiwas">
+        saiwas
+      </a>
+    </li>
+    <li class="fa fa-envelope">
+      <a href="mailto:johnnysaiwas@gmail.com">
+        johnnysaiwas@gmail.com
+      </a>
+    </li>
+    <li class="fab fa-qq">
+      <a href="/">
+        464781456
+      </a>
+    </li>
+  </ul>
+  <p>A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take
+    away.</p>
+  <p id="legal">
+    Copyright (c) 2018 Saiwas | Powered by
+    <a href="http://jekyllrb.com">Jekyll</a> &amp;
+    <a href="http://github.com">GitHub</a> | designed &amp; build by
+    <a href="http://saiwas.github.io">saiwas</a>
+  </p>
+</div>
+  </footer>
+</body>
+<script type="text/javascript" src="/blog/js/application.js" async defer></script>
+</html>

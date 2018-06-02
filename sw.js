@@ -13,15 +13,13 @@ self.addEventListener('install', async e => {
 
 self.addEventListener('fetch', async e => {
   let req = e.request;
-  let url = new URL(req.url);
-
-  let response = url.origin === location.origin ? cacheFirst(req) : networkFirst(req);
+  let response = networkFirst(req);
   e.respondWith(response);
 });
 
-self.addEventListener('sync', function(event) {
-  if (event.tag == 'syncEvent') {
-    networkFirst(location.url)
+self.addEventListener('sync', async e => {
+  if (e.tag == 'syncEvent') {
+    console.info('Here is syncEvent');
   }
 });
 
@@ -31,14 +29,13 @@ async function cacheFirst(request) {
 }
 
 async function networkFirst(request) {
-  let cache = await caches.open('saiwas-blog');
+  const cache = await caches.open('saiwas-blog');
 
   try {
     let res = await fetch(request);
     cache.put(request, res.clone());
     return res;
   } catch (error) {
-    console.info(error);
-    return await cache.match(request);
+    return cacheFirst(request);
   }
 }

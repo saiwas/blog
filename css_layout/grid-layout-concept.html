@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="manifest" href="/blog/manifest.json">
+  <link rel="preload" href="/blog/css/main.css" as="style" type="text/css" onload="this.rel='stylesheet'" crossorigin="anonymous">
+  <link rel="stylesheet" href="/blog/css/main.css">
+  <link rel="preload" href="/blog/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/blog/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <meta name="theme-color" content="#2196f3">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#2196f3">
+  <meta name="apple-mobile-web-app-title" content="Saiwas Blog">
+  <link rel="apple-touch-icon" href="/blog/images/icons/icon-152x152.png">
+  <!-- Add to home screen for windows -->
+  <meta name="msapplication-TileImage" content="/blog/images/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#2196f3">
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/main.css">
+  </noscript>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=1">
+  <title>Saiwas Blog | Grid Layout -- Concept</title>
+  <style>
+    .avatar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      border-radius: 10%;
+    }
+
+    #site-header {
+      background-color: black;
+      border-top: 5px solid #424242;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #main-content {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5em 0;
+      margin: 0 auto;
+      max-width: 1250px;
+    }
+
+    #footer {
+      background-color: black;
+      color: white;
+      padding: 1.5rem;
+    }
+
+    @media (min-width: 800px) {
+      body {
+        display: grid;
+        grid-template-columns: 20% 80%;
+        grid-template-rows: 1fr;
+        grid-template-areas: "header main" "footer main"
+      }
+      .avatar {
+        width: 150px;
+        height: 150px;
+      }
+      .container {
+        grid-area: main;
+        margin: 0;
+        max-width: none;
+        position: relative;
+      }
+      #categories {
+        margin: 0;
+        overflow: scroll;
+      }
+      #categories ul {
+        padding: 5px 2em;
+      }
+      #categories ul li {
+        border: 2px solid gold;
+        border-radius: 15px;
+        display: inline-block;
+        margin: 5px;
+        min-width: 15%;
+        height: 2em;
+      }
+      #categories ul li:hover {
+        border-style: ridge;
+      }
+      .category-cnt {
+        margin: 10px;
+      }
+      #main-content {
+        padding: 0;
+      }
+      .page-navigation a {
+        font-size: unset;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+  <header id="site-header" role="banner">
+    <div class="wrapper">
+  <img class="avatar" data-src="https://avatars2.githubusercontent.com/u/3829027?s=460&v=4" alt="saiwas-avatar">
+  <h1 class="site-title">
+    <a rel="author" href="/blog/">Saiwas</a>
+  </h1>
+  <p>I am a web developer.</p>
+  <p>Always hungry to keep learning.</p>
+</div>
+
+  </header>
+  <section class= "container">
+    <article id="post-detail">
+  <header>
+    <h2 class="post-title">
+      <a href="#">Grid Layout -- Concept</a>
+    </h2>
+    <p class="category">css_layout</p>
+  </header>
+  <div class="excerpt">
+    <h2 id="背景">背景</h2>
+<p>如今, 随着移动设备的广泛应用和迅速发展, 在Web领域上, <code class="highlighter-rouge">Responsive Web Design(RWD)</code> 得到了广泛的应用. 为了开发人员更加容易实现 <code class="highlighter-rouge">RWD</code>, 2009年, W3C 提出了一种新的方案–Flex 布局. 这种布局解决了大部分的 <code class="highlighter-rouge">RWD</code> 的布局问题, 并且提供了创建复杂布局的灵活性. 但当需要在二维空间中创建 <code class="highlighter-rouge">RWD</code> 时, 那就GG了.</p>
+
+<p>于是, W3C在 2017年09月 提出了新的 <code class="highlighter-rouge">Css Grid Layout</code> 布局方法. 截至2017年10月, 除了 IE 10,11, Opera Mini和UC浏览器外, Chrome，Firefox，Safari和Edge全都支持没有供应商前缀的 <code class="highlighter-rouge">CSS Grid Layout</code> , 截止 2018年06月, 87% 的浏览器版本都能支持这种布局 – 参考 <a href="https://caniuse.com/#feat=css-grid">Can I Use</a></p>
+
+<hr />
+
+<h2 id="基本概念">基本概念</h2>
+<p>基本的HTML代码布局如下:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"sub-item"</span><span class="nt">&gt;&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"item"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<h3 id="grid-container">Grid Container</h3>
+<blockquote>
+  <p>如上述例子, 只要 <code class="highlighter-rouge">container</code> 设置 <code class="highlighter-rouge">display: grid</code>, 那么 <code class="highlighter-rouge">container</code> 就称为 <em>Grid Container</em></p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="grid-item">Grid Item</h3>
+<blockquote>
+  <p>如上述例子, <em>Grid Container</em> 里的所有 <code class="highlighter-rouge">item</code> 元素都称为 <em>Grid Item</em>, 但是 <code class="highlighter-rouge">item</code> 底下的元素 <code class="highlighter-rouge">sub-item</code> 不是.</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="grid-line">Grid Line</h3>
+<blockquote>
+  <p>网格结构的所有分界线.</p>
+</blockquote>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-line.png" alt="Grid Line" /></p>
+
+<p><br /></p>
+
+<h3 id="grid-track">Grid Track</h3>
+<blockquote>
+  <p>两条 <code class="highlighter-rouge">Grid Line</code> 之间的空隙, 称为 <code class="highlighter-rouge">Grid Track</code>. 也就是网格的 <code class="highlighter-rouge">行</code> 和 <code class="highlighter-rouge">列</code></p>
+</blockquote>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-track.png" alt="Grid Track" /></p>
+
+<p><br /></p>
+
+<h3 id="grid-cell">Grid Cell</h3>
+<blockquote>
+  <p><code class="highlighter-rouge">行</code> 和 <code class="highlighter-rouge">列</code> 交集的区域叫 <code class="highlighter-rouge">Grid Cell</code>.</p>
+</blockquote>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-cell.png" alt="Grid Cell" /></p>
+
+<p><br /></p>
+
+<h3 id="grid-area">Grid Area</h3>
+<blockquote>
+  <p>1个或者多个连续 <code class="highlighter-rouge">Grid Cell</code> 的总空间, 称为 <code class="highlighter-rouge">Grid Area</code></p>
+</blockquote>
+
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-area.png" alt="Grid Area" /></p>
+
+<hr />
+
+<p><strong>Demo :</strong> <a href="https://github.com/saiwas/GridCssLayout">GridCssLayout Demo</a></p>
+
+  </div>
+  <span class="post-date">01/Jun/2018</span>
+</article>
+
+<div class="page-navigation">
+  
+  <a class="prev" href="/blog/css_layout/flex-layout.html">&laquo; Flex Layout</a>
+   
+  <a class="next" href="/blog/css_layout/grid-layout-container.html">Grid Layout -- Container &raquo;</a>
+  
+</div>
+
+  </section>
+  <footer id="footer">
+    <div class="contact wrapper">
+  <h3>CONTACT</h3>
+  <ul class="social-media-list">
+    <li class="fab fa-github">
+      <a href="https://github.com/saiwas">
+        saiwas
+      </a>
+    </li>
+    <li class="fa fa-envelope">
+      <a href="mailto:johnnysaiwas@gmail.com">
+        johnnysaiwas@gmail.com
+      </a>
+    </li>
+    <li class="fab fa-qq">
+      <a href="/">
+        464781456
+      </a>
+    </li>
+  </ul>
+  <p>A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take
+    away.</p>
+  <p id="legal">
+    Copyright (c) 2018 Saiwas | Powered by
+    <a href="http://jekyllrb.com">Jekyll</a> &amp;
+    <a href="http://github.com">GitHub</a> | designed &amp; build by
+    <a href="http://saiwas.github.io">saiwas</a>
+  </p>
+</div>
+  </footer>
+</body>
+<script type="text/javascript" src="/blog/js/application.js" async defer></script>
+</html>
